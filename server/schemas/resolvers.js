@@ -4,15 +4,13 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        Query: {
-            me: async (parent, args, context) => {
-                if (context.user) {
-                    return User.findOne({ _id: context.user._id }).populate('savedProfiles');
-                }
-                throw new AuthenticationError('You need to be logged in!');
-            }
-        },
-    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('savedProfiles');
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
+  },
 
     Mutation: {
         login: async (parent, { email, password }) => {
@@ -37,40 +35,38 @@ const resolvers = {
 
             return { token, newuser }
         },
-        // addProfile go here???
 
 
-        // saveBook: async (parent, { bookToSave }, context) => {
-        //     if (context.user) {
-        //       return User.findOneAndUpdate(
-        //         { _id: context.user._id },
-        //         {
-        //           $addToSet: { savedBooks: bookToSave },
-        //         },
-        //         {
-        //           new: true,
-        //           runValidators: true,
-        //         }
-        //       );
-        //     }
+        saveProfile: async (parent, { profileToSave }, context) => {
+            if (context.user) {
+              return User.findOneAndUpdate(
+                { _id: context.user._id },
+                {
+                  $addToSet: { savedProfiles: profileToSave },
+                },
+                {
+                  new: true,
+                  runValidators: true,
+                }
+              );
+            }
 
-        //     throw new AuthenticationError('You need to be logged in!');
-        //   },
-
-        // removeProfile???
+            throw new AuthenticationError('You need to be logged in!');
+          },
 
 
-        //   removeBook: async (parent, { bookId }, context) => {
-        //     if (context.user) {
-        //       return User.findOneAndUpdate(
-        //         { _id: context.user._id },
-        //         { $pull: { savedBooks: { bookId: bookId } } },
-        //         { new: true }
-        //       )
-        //     }
 
-        //     throw new AuthenticationError('You need to be logged in!');
-        //   },
+          removeProfile: async (parent, { profileId }, context) => {
+            if (context.user) {
+              return User.findOneAndUpdate(
+                { _id: context.user._id },
+                { $pull: { savedProfiles: { profileId: profileId } } },
+                { new: true }
+              )
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+          },
     }
 };
 
