@@ -29,8 +29,8 @@ const resolvers = {
             const token = signToken(finduser)
             return { token, finduser }
         },
-        addUser: async (parent, { username, email, password }) => {
-            const newuser = await User.create({ username, email, password })
+        addUser: async (parent, { firstname, lastname, username, email, password }) => {
+            const newuser = await User.create({ firstname, lastname, username, email, password })
             const token = signToken(newuser);
 
             return { token, newuser }
