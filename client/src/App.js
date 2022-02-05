@@ -2,6 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react'
 import NavBar from './components/Navbar/NavBar';
+import Login from './pages/Login'
+import SignUp from './pages/Signup'
+import Dashboard from './pages/Dashboard/Dashboard'
 
 
 import {
@@ -40,7 +43,10 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <ChakraProvider>
-          <NavBar />
+          {/* <Dashboard /> */}
+          <SignUp />
+          {/* <Login /> */}
+
         </ChakraProvider>
       </Router>
     </ApolloProvider>
