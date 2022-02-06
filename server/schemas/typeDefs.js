@@ -20,18 +20,15 @@ type Auth {
     token: String
     user: [User]
 }
-type: Query {
+type Query {
     me: User
 }
 type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
-    type Mutation {
-        login(email: String!, password: String!): Auth
-        addUser(username: String!, email: String!, password: String!): Auth
-        saveProfile(profileToSave: ProfileInput): User 
-        removeProfile(profileId: String!): User
-      }
+    addUser(username: String!, email: String!, firstname: String!, lastname: String!, password: String!): Auth
+    saveProfile(profileToSave: Profile): User 
+    removeProfile(profileId: String!): User
+    
   }
 `;
 
