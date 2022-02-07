@@ -1,16 +1,16 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-const User = model('User', userSchema);
 
-const { profileSchema } = require('./Profile');
+
+const { profileSchema } = require('./Profile')
 
 const userSchema = new Schema(
     {
-        firstname: {
+        firstName: {
             type: String,
             required: true,
         },
-        lastname: {
+        lastName: {
             type: String,
             required: true,
         },
@@ -29,7 +29,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        savedProfile: { profileSchema },
+        // savedProfile: [profileSchema] ,
     },
 );
 
@@ -46,6 +46,7 @@ userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
 };
 
+const User = model('User', userSchema);
 
 
 module.exports = User;
