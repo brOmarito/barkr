@@ -44,8 +44,8 @@ function App() {
       <Router>
         <ChakraProvider>
           {/* <Dashboard /> */}
-          <SignUp />
-          {/* <Login /> */}
+          {/* <SignUp /> */}
+          <Login />
 
         </ChakraProvider>
       </Router>
