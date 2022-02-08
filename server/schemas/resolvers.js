@@ -61,17 +61,17 @@ const resolvers = {
 
 
 
-    removeProfile: async (parent, { profileId }, context) => {
-      if (context.user) {
-        return User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { savedProfiles: { profileId: profileId } } },
-          { new: true }
-        )
-      }
+    // removeProfile: async (parent, { profileId }, context) => {
+    //   if (context.user) {
+    //     return User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $pull: { savedProfiles: { profileId: profileId } } },
+    //       { new: true }
+    //     )
+    //   }
 
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
   }
 };
 

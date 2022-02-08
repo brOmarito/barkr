@@ -13,7 +13,7 @@ type User {
 type Profile {
     bio: String!
     description: String!
-    profileId: String!
+    userId: String!
     image: String
     link: String
 }
