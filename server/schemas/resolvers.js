@@ -46,9 +46,7 @@ const resolvers = {
       if (context.user) {
         return User.findOneAndUpdate(
           { _id: context.user._id },
-          {
-            $addToSet: { savedProfiles: profileToSave },
-          },
+         { $pull: { savedProfiles: { profileId: profileId } } },
           {
             new: true,
             runValidators: true,
