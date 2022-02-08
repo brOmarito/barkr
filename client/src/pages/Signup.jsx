@@ -42,6 +42,7 @@ export default function SignupCard() {
           variables: { ...values },
         })
 
+        Auth.login(data.createUser.token)
         alert('Thanks for signing up!')
       } catch (err) {
         alert('An error occured')
