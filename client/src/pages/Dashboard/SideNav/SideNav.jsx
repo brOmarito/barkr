@@ -22,6 +22,9 @@ const SideNav = () => {
           <Link>
           Messages
           </Link>
+          <Link>
+          Events
+          </Link>
         </VStack>
       </VStack>
     </Flex>
