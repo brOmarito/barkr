@@ -14,7 +14,7 @@ const profileSchema = new Schema({
         type: String,
         required: true,
     },
-    profileId: {
+    userId: {
         type: String,
         required: true,
     },
