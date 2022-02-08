@@ -4,15 +4,21 @@ const { Schema } = require('mongoose');
 const profileSchema = new Schema({
     bio: {
         type: String,
-        required: true
     },
-    dogbreed: {
+    dogBreed: {
         type: String,
-        required: true
     },
-    description: {
+    dogDescription: {
         type: String,
-        required: true,
+    },
+    lookingForLove: {
+        type: Boolean
+    },
+    lookingForFriends: {
+        type: Boolean
+    },
+    location: {
+        type: String,
     },
     userId: {
         type: String,
