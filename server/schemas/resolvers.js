@@ -14,7 +14,19 @@ const resolvers = {
 
     users: async (parent, context) => {
       return User.find()
-    }
+    },
+    // getChat: async (parent, { username }, context) => {
+    //   if (context.user) {
+    //   return  User.findOne({_id: context.user._id})
+    //     .populate({
+    //       path : 'Chatroom',
+    //       populate : {
+    //         path : 'Chat'
+    //       }
+    //     })
+    //   }
+    //   throw new AuthenticationError('You need to be logged in!')
+    // }
   },
 
   Mutation: {
