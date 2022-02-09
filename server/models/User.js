@@ -29,6 +29,10 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
+        chatRooms: {
+          type: [String],
+          required: false,
+        }
         // savedProfile: [profileSchema] ,
     },
 );
