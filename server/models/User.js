@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const Chatroom = require('./Chatroom')
 
 
 const { profileSchema } = require('./Profile')
@@ -29,10 +30,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        chatRooms: {
-          type: [String],
-          required: false,
-        }
+        chatRooms: [Chatroom.schema],
         // savedProfile: [profileSchema] ,
     },
 );
