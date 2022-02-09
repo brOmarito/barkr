@@ -1,4 +1,6 @@
-const { Schema } = require('mongoose');
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 
 const chatRoomSchema = new Schema({
@@ -14,4 +16,6 @@ const chatRoomSchema = new Schema({
     ]
 });
 
-module.exports = chatRoomSchema;
+const Chatroom = mongoose.model('Chatroom', chatRoomSchema);
+
+module.exports = Chatroom;
