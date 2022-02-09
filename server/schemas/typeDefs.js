@@ -18,6 +18,17 @@ type Profile {
     link: String
 }
 
+type Chat {
+    username: String!
+    timeStamp: Date!
+    chatText: String!
+}
+
+type Chatroom {
+    roomName: String!
+    chats: [Chat]
+}
+
 input ProfileInput {
     bio: String!
     description: String!
@@ -25,10 +36,12 @@ input ProfileInput {
     image: String
     link: String
 }
+
 type Auth {
     token: String
     user: User
 }
+
 type Query {
     me: User
     users: [ User ]
