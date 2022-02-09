@@ -20,7 +20,7 @@ type Profile {
 
 type Chat {
     username: String!
-    timeStamp: Date!
+    timeStamp: String!
     chatText: String!
 }
 
