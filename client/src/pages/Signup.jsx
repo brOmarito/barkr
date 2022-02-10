@@ -1,6 +1,7 @@
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../utils/mutations';
+import { CREATE_PROFILE } from '../utils/mutations';
 import { useFormik } from 'formik';
 
 import {
@@ -24,7 +25,7 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
-  const [createUser, { error }] = useMutation(CREATE_USER);
+  const [createUser, { error: userError }] = useMutation(CREATE_USER);
 
 
   const formik = useFormik({
@@ -37,15 +38,16 @@ export default function SignupCard() {
     },
     onSubmit: async (values) => {
       try {
-        console.log(values)
+        
         const { data } = await createUser({
           variables: { ...values },
         })
 
         Auth.login(data.createUser.token)
-        alert('Thanks for signing up!')
+
+        alert('Thanks for signing up!' + JSON.stringify(data.user))
       } catch (err) {
-        alert('An error occured')
+        alert('An error occured' + err)
         console.log(err)
       }
 
@@ -74,7 +76,7 @@ return (
         boxShadow={'lg'}
         p={8}>
         <Stack spacing={4}>
-          <form onSubmit={formik.handleSubmit}>
+          <form onSubmit={(e) => {e.preventDefault(); formik.handleSubmit(e)}}>
             <HStack>
               <Box>
                 <FormControl isRequired>

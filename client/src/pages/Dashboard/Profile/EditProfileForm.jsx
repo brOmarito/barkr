@@ -21,8 +21,8 @@ import {
   CheckboxGroup
 } from '@chakra-ui/react'
 
+import Auth from '../../../utils/auth'
 import { useMutation } from '@apollo/client';
-// import { CREATE_USER } from '../utils/mutations';
 import { useFormik } from 'formik';
 
 
@@ -43,6 +43,7 @@ const EditProfileForm = () => {
     onSubmit: async (values) => {
       try {
         console.log(values)
+        console.log(Auth.getProfile().data._id)
 
       } catch (err) {
 

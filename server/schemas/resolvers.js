@@ -1,3 +1,4 @@
+const { Profile } = require('../models');
 const { User, userSchema } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
@@ -47,10 +48,17 @@ const resolvers = {
       return { token, finduser }
     },
     createUser: async (parent, { firstName, lastName, username, email, password }) => {
-      const newuser = await User.create({ firstName, lastName, username, email, password })
-      const token = signToken(newuser);
+      const newUser = await User.create({ firstName, lastName, username, email, password })
+      const token = signToken(newUser);
+      const newProfile = await Profile.create({ userId: newUser._id })
+      console.log(newUser)
+      console.log(newProfile)
+      return { token, newUser }
+    },
 
-      return { token, newuser }
+    createProfile: async (parent, { userId }) => {
+      const newProfile = await Profile.create({ userId })
+      return newProfile 
     },
 
 

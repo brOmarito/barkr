@@ -3,8 +3,6 @@ const bcrypt = require('bcrypt');
 const Chatroom = require('./Chatroom')
 
 
-const { profileSchema } = require('./Profile')
-
 const userSchema = new Schema(
     {
         firstName: {
@@ -31,7 +29,7 @@ const userSchema = new Schema(
             required: true,
         },
         chatRooms: [Chatroom.schema],
-        // savedProfile: [profileSchema] ,
+
     },
 );
 

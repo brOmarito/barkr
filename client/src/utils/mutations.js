@@ -31,6 +31,15 @@ mutation login($email: String!, $password: String!) {
         }
     }
 }
-`;
+`
+export const CREATE_PROFILE = gql`
+mutation createProfile($userId: ID!) {
+  createProfile(userId: $userId){
+      userId
+  }
+}
+
+`
+;
 
 

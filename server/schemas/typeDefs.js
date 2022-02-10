@@ -7,15 +7,20 @@ type User {
     lastName: String!
     username: String!
     email: String!
-    savedProfile: Profile
+ 
 }
 
 type Profile {
-    bio: String!
-    description: String!
-    userId: String!
+    userId: ID!
+    bio: String
+    dogName: String
+    dogBreed: String
+    dogDescription: String
+    lookingForLove: Boolean
+    lookingForFriends: Boolean
+    city: String
+    state: String
     image: String
-    link: String
 }
 
 type Chat {
@@ -30,11 +35,16 @@ type Chatroom {
 }
 
 input ProfileInput {
-    bio: String!
-    description: String!
-    profileId: String!
+    userId: ID!
+    bio: String
+    dogName: String
+    dogBreed: String
+    dogDescription: String
+    lookingForLove: Boolean
+    lookingForFriends: Boolean
+    city: String
+    state: String
     image: String
-    link: String
 }
 
 type Auth {
@@ -45,12 +55,16 @@ type Auth {
 type Query {
     me: User
     users: [ User ]
+    profile(userId: ID!): Profile 
 }
 type Mutation {
     login(email: String!, password: String!): Auth
     createUser(username: String!, email: String!, firstName: String!, lastName: String!, password: String!): Auth
+    createProfile(userId: ID!): Profile
+    updateProfile(userId: String!): Profile
     saveProfile(profileToSave: ProfileInput): User 
     removeProfile(profileId: String!): User
+
     
   }
 `;
