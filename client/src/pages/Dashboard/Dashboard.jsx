@@ -4,6 +4,8 @@ import SideNav from './SideNav/SideNav';
 import ChatList from './Chat/ChatList';
 import ChatContainer from './Chat/ChatContainer';
 import EditProfileForm from './Profile/EditProfileForm';
+import { Route, Switch, } from 'react-router-dom';
+import  ExploreContainer  from './Explore/ExploreContainer';
 
 const Dashboard = () => {
   return (
@@ -11,8 +13,12 @@ const Dashboard = () => {
       <NavBar />
       <Container display='flex' flex='1' minW='100%'>
         <SideNav />
-        <EditProfileForm />
-        <ChatList  />
+        <Switch>
+          <Route exact path="/profile" component={EditProfileForm} />
+          <Route exact path="/chat" component={ChatContainer} />
+          <Route exact path="/explore" component={ExploreContainer} />
+        </Switch>
+        <ChatList />
       </Container>
     </Container>
   )
