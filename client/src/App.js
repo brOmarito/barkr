@@ -1,10 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react'
 import NavBar from './components/Navbar/NavBar';
 import Login from './pages/Login'
 import SignUp from './pages/Signup'
 import Dashboard from './pages/Dashboard/Dashboard'
+import Auth from './utils/auth';
+
 
 
 import {
@@ -37,20 +39,30 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+// function requireAuth(nextState, replaceState) {
+//   if (!Auth.loggedIn) {
+//     replaceState({ nextPathname: nextState.location.pathname }, '/Dashboard')
+//   }
+// }
 
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <ChakraProvider>
-          <Dashboard />
-          {/* <SignUp /> */}
-          {/* <Login /> */}
-
-
-        </ChakraProvider>
+        <>
+          <ChakraProvider>
+            {/* <Switch>
+              <Route path="/Dashboard" component={Dashboard} onEnter={requireAuth} />
+              <Route exact path="/" component={Login} />
+              <Route exact path="/Signup" component={SignUp} />
+            </Switch> */}
+            <Dashboard />
+            <SignUp />
+            <Login />
+          </ChakraProvider>
+        </>
       </Router>
-    </ApolloProvider>
+    </ApolloProvider >
 
   );
 }
