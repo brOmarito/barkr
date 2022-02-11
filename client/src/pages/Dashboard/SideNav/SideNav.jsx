@@ -1,9 +1,9 @@
 import {
-  Link,
   Flex,
   Box,
   VStack
 } from '@chakra-ui/react'
+import { Link } from 'react-router-dom';
 
 const SideNav = () => {
   return (
@@ -13,13 +13,13 @@ const SideNav = () => {
 
         </VStack>
         <VStack>
-          <Link>
+          <Link to="/profile">
             Edit Profile
           </Link>
-          <Link>
+          <Link to="/explore">
           Explore
           </Link>
-          <Link>
+          <Link to="/chat">
           Messages
           </Link>
           <Link>
