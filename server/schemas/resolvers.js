@@ -1,3 +1,4 @@
+const { Profile } = require('../models');
 const { User, userSchema } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
@@ -14,6 +15,10 @@ const resolvers = {
 
     users: async (parent, context) => {
       return User.find()
+    },
+
+    profiles: async (parent, context) => {
+      return Profile.find()
     },
     // getChat: async (parent, { username }, context) => {
     //   if (context.user) {
@@ -47,41 +52,47 @@ const resolvers = {
       return { token, finduser }
     },
     createUser: async (parent, { firstName, lastName, username, email, password }) => {
-      const newuser = await User.create({ firstName, lastName, username, email, password })
-      const token = signToken(newuser);
+      const newUser = await User.create({ firstName, lastName, username, email, password })
+      const token = signToken(newUser);
+      const newProfile = await Profile.create({ userId: newUser._id })
+      console.log(newUser)
+      console.log(newProfile)
+      return { token, newUser }
+    },
 
-      return { token, newuser }
+    createProfile: async (parent, { userId }) => {
+      const newProfile = await Profile.create({ userId })
+      return newProfile
     },
 
 
-    saveProfile: async (parent, { profileToSave }, context) => {
-      if (context.user) {
-        return User.findOneAndUpdate(
-          { _id: context.user._id },
-         { $pull: { savedProfiles: { profileId: profileId } } },
-          {
-            new: true,
-            runValidators: true,
+    updateProfile: async (parent, args, context) => {
+
+      return Profile.findOneAndUpdate(
+        { userId: args.userId },
+        {
+          $set: {
+            bio: args.bio,
+            dogName: args.dogName,
+            dogBreed: args.dogBreed,
+            dogDescription: args.dogDescription,
+            lookingForLove: args.lookingForLove,
+            lookingForFriends: args.lookingForFriends,
+            city: args.city,
+            state: args.state,
+            image: args.image
           }
-        );
-      }
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    }
 
-      throw new AuthenticationError('You need to be logged in!');
-    },
 
 
 
-    // removeProfile: async (parent, { profileId }, context) => {
-    //   if (context.user) {
-    //     return User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $pull: { savedProfiles: { profileId: profileId } } },
-    //       { new: true }
-    //     )
-    //   }
-
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
   }
 };
 

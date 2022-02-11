@@ -57,8 +57,8 @@ function App() {
               <Route exact path="/Signup" component={SignUp} />
             </Switch> */}
             <Dashboard />
-            <SignUp />
-            <Login />
+            {/* <SignUp /> */}
+            {/* <Login /> */}
           </ChakraProvider>
         </>
       </Router>

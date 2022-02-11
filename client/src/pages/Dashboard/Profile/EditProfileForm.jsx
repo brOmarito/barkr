@@ -21,28 +21,34 @@ import {
   CheckboxGroup
 } from '@chakra-ui/react'
 
+import Auth from '../../../utils/auth'
 import { useMutation } from '@apollo/client';
-// import { CREATE_USER } from '../utils/mutations';
 import { useFormik } from 'formik';
+import { UPDATE_PROFILE } from '../../../utils/mutations'
 
 
 const EditProfileForm = () => {
+  const [updateProfile, { error }] = useMutation(UPDATE_PROFILE);
 
   const formik = useFormik({
     initialValues: {
       bio: "",
+      dogName: "",
       dogBreed: "",
       dogDescription: "",
-      lookingForLove: "",
-      lookForFriends: "",
-      location: "",
-      userId: "",
+      lookingForLove: false,
+      lookForFriends: false,
+      city: "",
+      state: "",
+      userId: Auth.getProfile().data._id,
       image: "",
-      link: "",
     },
     onSubmit: async (values) => {
       try {
         console.log(values)
+        const { data } = await updateProfile({
+          variables: {...values}
+        })
 
       } catch (err) {
 
@@ -65,45 +71,71 @@ const EditProfileForm = () => {
                   <FormControl >
                     <FormLabel>Name</FormLabel>
                     <Input
-                      id="name"
+                      id="dogName"
                       type="text"
-                      name='name'
+                      name='dogName'
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      value={formik.values.firstName}
+                      value={formik.values.dogName}
                     />
                   </FormControl>
                 </Box>
                 <Box>
-                  <FormControl id="breed" >
+                  <FormControl>
                     <FormLabel>Breed</FormLabel>
                     <Input
-                      id="breed"
-                      name='breed'
+                      id="dogBreed"
+                      name='dogBreed'
                       type="text"
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      value={formik.values.lastName}
+                      value={formik.values.dogBreed}
                     />
                   </FormControl>
                 </Box>
                 <Box>
-                  <FormControl id="location" >
-                    <FormLabel>Location</FormLabel>
+                  <FormControl>
+                    <FormLabel>City</FormLabel>
                     <Input
-                      id="location"
-                      name='location'
+                      id="city"
+                      name='city'
                       type="text"
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      value={formik.values.lastName}
+                      value={formik.values.city}
+                    />
+                  </FormControl>
+                </Box>
+                <Box>
+                  <FormControl>
+                    <FormLabel>State</FormLabel>
+                    <Input
+                      id="state"
+                      name='state'
+                      type="text"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.state}
                     />
                   </FormControl>
                 </Box>
                 <Box>
                   <HStack>
-                    <Checkbox>Looking for Love? </Checkbox>
-                    <Checkbox>Looking for Friends? </Checkbox>
+                    <Checkbox
+                      type='checkbox'
+                      name='lookingForLove'
+                      id='lookingForLove'
+                      // value={formik.values.lookingForLove}
+                    >
+                      Looking for Love?
+                    </Checkbox>
+                    <Checkbox
+                      type='checkbox'
+                      name='lookingForFriends'
+                      id='lookingForFriends'
+                    >
+                      Looking for Friends?
+                    </Checkbox>
                   </HStack>
                 </Box>
               </VStack>
@@ -112,27 +144,27 @@ const EditProfileForm = () => {
                 <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' />
               </Box>
             </HStack>
-            <FormControl id="bio">
+            <FormControl>
               <FormLabel>About the Owner</FormLabel>
               <Textarea
-                id="username"
-                name='username'
+                id="bio"
+                name='bio'
                 type="text"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.username}
+                value={formik.values.bio}
               />
             </FormControl>
-            <FormControl id="description">
+            <FormControl>
               <FormLabel>About the Dog</FormLabel>
               <Textarea
-                type="email"
-                id="email"
-                name='email'
+                type="text"
+                id="dogDescription"
+                name='dogDescription'
                 size='sm'
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.email}
+                value={formik.values.dogDescription}
               />
             </FormControl>
             <Stack spacing={10} pt={2}>
