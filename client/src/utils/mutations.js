@@ -38,8 +38,42 @@ mutation createProfile($userId: ID!) {
       userId
   }
 }
-
 `
-;
+
+export const UPDATE_PROFILE = gql`
+mutation updateProfile(
+  $userId: ID
+  $bio: String
+  $dogName: String
+  $dogBreed: String
+  $dogDescription: String
+  $lookingForLove: Boolean
+  $lookingForFriends: Boolean
+  $city: String
+  $state: String
+  $image: String) {
+    updateProfile(
+      userId: $userId
+      bio: $bio
+      dogName: $dogName
+      dogBreed: $dogBreed
+      dogDescription: $dogDescription
+      lookingForLove: $lookingForLove
+      lookingForFriends: $lookingForFriends
+      city: $city
+      state: $state
+      image: $image
+    ){
+      userId
+      bio
+      dogName
+      dogBreed
+      dogDescription
+      lookingForLove
+      lookingForFriends 
+    }
+  }
+`
+  ;
 
 

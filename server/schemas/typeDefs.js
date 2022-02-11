@@ -56,14 +56,32 @@ type Query {
     me: User
     users: [ User ]
     profile(userId: ID!): Profile 
+    profiles: [ Profile ]
 }
 type Mutation {
     login(email: String!, password: String!): Auth
-    createUser(username: String!, email: String!, firstName: String!, lastName: String!, password: String!): Auth
+
+    createUser(
+        username: String!, 
+        email: String!, firstName: 
+        String!, lastName: String!, 
+        password: String!
+        ): Auth
+
     createProfile(userId: ID!): Profile
-    updateProfile(userId: String!): Profile
-    saveProfile(profileToSave: ProfileInput): User 
-    removeProfile(profileId: String!): User
+
+    updateProfile(
+       userId: ID 
+       bio: String,
+       dogName: String,
+       dogBreed: String,
+       dogDescription: String,
+       lookingForLove: Boolean,
+       lookingForFriends: Boolean,
+       city: String,
+       state: String,
+       image: String,
+        ): Profile
 
     
   }

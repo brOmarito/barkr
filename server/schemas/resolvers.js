@@ -16,6 +16,10 @@ const resolvers = {
     users: async (parent, context) => {
       return User.find()
     },
+
+    profiles: async (parent, context) => {
+      return Profile.find()
+    },
     // getChat: async (parent, { username }, context) => {
     //   if (context.user) {
     //   return  User.findOne({_id: context.user._id})
@@ -58,38 +62,37 @@ const resolvers = {
 
     createProfile: async (parent, { userId }) => {
       const newProfile = await Profile.create({ userId })
-      return newProfile 
+      return newProfile
     },
 
 
-    saveProfile: async (parent, { profileToSave }, context) => {
-      if (context.user) {
-        return User.findOneAndUpdate(
-          { _id: context.user._id },
-         { $pull: { savedProfiles: { profileId: profileId } } },
-          {
-            new: true,
-            runValidators: true,
+    updateProfile: async (parent, args, context) => {
+
+      return Profile.findOneAndUpdate(
+        { userId: args.userId },
+        {
+          $set: {
+            bio: args.bio,
+            dogName: args.dogName,
+            dogBreed: args.dogBreed,
+            dogDescription: args.dogDescription,
+            lookingForLove: args.lookingForLove,
+            lookingForFriends: args.lookingForFriends,
+            city: args.city,
+            state: args.state,
+            image: args.image
           }
-        );
-      }
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    }
 
-      throw new AuthenticationError('You need to be logged in!');
-    },
 
 
 
-    // removeProfile: async (parent, { profileId }, context) => {
-    //   if (context.user) {
-    //     return User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $pull: { savedProfiles: { profileId: profileId } } },
-    //       { new: true }
-    //     )
-    //   }
-
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
   }
 };
 
