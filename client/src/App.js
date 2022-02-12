@@ -39,11 +39,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-// function requireAuth(nextState, replaceState) {
-//   if (!Auth.loggedIn) {
-//     replaceState({ nextPathname: nextState.location.pathname }, '/Dashboard')
-//   }
-// }
 
 function App() {
   return (
@@ -58,12 +53,7 @@ function App() {
             </Route>
               <Route path="/login" component={Login} />
               <Route path="/Signup" component={SignUp} />
-              {/* <Route path="/Profile" component={Pro} />
-              <Route path="/Signup" component={SignUp} /> */}
             </Switch>
-            {/* <Dashboard /> */}
-            {/* <SignUp /> */}
-            {/* <Login /> */}
           
           </ChakraProvider>
         </>
