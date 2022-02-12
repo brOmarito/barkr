@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import ChatFeed from "./ChatFeed"
+import Chat from "./Chat"
 import React from "react";
 
 const ChatContainer = () => {
@@ -10,9 +10,9 @@ const ChatContainer = () => {
       justifyContent="flex-start"
       position="relative"
       minHeight="50vh"
-      bgColor="cyan.500"
+      bgColor="gray.50"
     >
-      < ChatFeed />
+      < Chat />
     </Flex>
   );
 };
