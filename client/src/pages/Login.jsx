@@ -91,8 +91,8 @@ export default function SimpleCard() {
                   direction={{ base: 'column', sm: 'row' }}
                   align={'start'}
                   justify={'space-between'}>
-                  <Checkbox>Remember me</Checkbox>
-                  <Link color={'blue.400'}>Forgot password?</Link>
+                  <Checkbox>Don't Have an Account?</Checkbox>
+                  <Link href='/signup' color={'blue.400'}>Sign Up!</Link>
                 </Stack>
                 <Button
                   type='submit'
