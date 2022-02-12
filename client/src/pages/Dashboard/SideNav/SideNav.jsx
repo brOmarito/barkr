@@ -11,11 +11,9 @@ import {
   FiHome,
   FiCompass,
   FiCalendar,
-  FiSettings,
   FiMail
 
 } from 'react-icons/fi';
-import { IconType } from 'react-icons';
 import { Link } from 'react-router-dom';
 
 const LinkItems = [

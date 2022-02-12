@@ -17,6 +17,10 @@ const resolvers = {
       return User.find()
     },
 
+    profile: async (parent, { userId } ) => {
+      return Profile.findOne({ userId: userId})
+    },
+
     profiles: async (parent, context) => {
       return Profile.find()
     },

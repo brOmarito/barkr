@@ -10,10 +10,15 @@ import {
     Badge,
     useColorModeValue,
   } from '@chakra-ui/react';
+  import { useQuery } from '@apollo/client';
+  import { QUERY_SINGLE_PROFILE } from '../../../utils/queries';
   
   export default function SocialProfileSimple(props) {
-
     const {image, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state } = props
+    // const [queryProfile, { error }] = useQuery(QUERY_SINGLE_PROFILE);
+
+
+
 
     return (
       <Center py={6}>
@@ -21,7 +26,7 @@ import {
           maxW={'320px'}
           w={'full'}
           bg={useColorModeValue('white', 'gray.900')}
-          boxShadow={'2xl'}
+          boxShadow={'xl'}
           rounded={'lg'}
           p={6}
           textAlign={'center'}>
@@ -46,7 +51,7 @@ import {
             }}
           />
           <Heading fontSize={'2xl'} fontFamily={'body'}>
-            Lindsey James
+            {dogName}
           </Heading>
           <Text fontWeight={600} color={'gray.500'} mb={4}>
             {dogBreed}

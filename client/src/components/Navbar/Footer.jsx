@@ -1,4 +1,5 @@
 import {
+  Link,
   Box,
   chakra,
   Container,
@@ -52,9 +53,11 @@ export default function SmallWithSocial() {
         align={{ base: 'center', md: 'center' }}>
         <Text>© 2020 Barkr. All rights reserved</Text>
         <Stack direction={'row'} spacing={6}>
-          <SocialButton label={'Twitter'} href={'#'}>
-            <FaGithub />
-          </SocialButton>
+          <Link href={'https://github.com/brOmarito/barkr'} target="_blank">
+            <SocialButton label={'Twitter'}>
+              <FaGithub />
+            </SocialButton>
+          </Link>
         </Stack>
       </Container>
     </Box>

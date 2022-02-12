@@ -21,15 +21,25 @@ import {
 } from '@chakra-ui/react'
 
 import Auth from '../../../utils/auth'
+
 import { useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+
 import { useFormik, Field } from 'formik';
+
 import { UPDATE_PROFILE } from '../../../utils/mutations'
+import { QUERY_SINGLE_PROFILE } from '../../../utils/queries';
 
 import { stateAbbreviations } from './stateAbbreviations'
 
+import { useEffect } from 'react'
 
 const EditProfileForm = () => {
-  const [updateProfile, { error }] = useMutation(UPDATE_PROFILE);
+
+  const [updateProfile, { error: updateError }] = useMutation(UPDATE_PROFILE);
+  // const [queryProfile, { error: queryError }] = useMutation(QUERY_SINGLE_PROFILE);
+
+  
 
   const formik = useFormik({
     initialValues: {
@@ -124,14 +134,6 @@ const EditProfileForm = () => {
                         })}
       
                       </Select>
-                      {/* <Input
-                        id="state"
-                        name='state'
-                        type="text"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.state}
-                      /> */}
                     </FormControl>
                   </Box>
                 </Flex>
