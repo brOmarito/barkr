@@ -5,6 +5,7 @@ import React from "react";
 const ChatContainer = () => {
   return (
     <Flex
+      flex={3}
       direction="column"
       alignItems="center"
       justifyContent="flex-start"
