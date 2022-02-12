@@ -9,7 +9,7 @@ const Chat = () => {
 
   if (Auth.loggedIn()) {
     const { username } = getProfile()
-    me = username
+    const me = username
   
 
   // const { data } = useMessagesQuery();
@@ -152,8 +152,8 @@ const Chat = () => {
     me: "sean"
   };
 
-  const messages = ChatfeedProps.messages,
-        me = ChatfeedProps.me
+  const messages = ChatfeedProps.messages
+  me = ChatfeedProps.me
 
   if (messages) {
     return (
