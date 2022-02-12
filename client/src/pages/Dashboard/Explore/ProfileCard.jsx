@@ -11,7 +11,10 @@ import {
     useColorModeValue,
   } from '@chakra-ui/react';
   
-  export default function SocialProfileSimple() {
+  export default function SocialProfileSimple(props) {
+
+    const {image, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state } = props
+
     return (
       <Center py={6}>
         <Box
@@ -46,17 +49,13 @@ import {
             Lindsey James
           </Heading>
           <Text fontWeight={600} color={'gray.500'} mb={4}>
-            @lindsey_jam3s
+            {dogBreed}
           </Text>
           <Text
             textAlign={'center'}
             color={useColorModeValue('gray.700', 'gray.400')}
             px={3}>
-            Actress, musician, songwriter and artist. PM for work inquires or{' '}
-            <Link href={'#'} color={'blue.400'}>
-              #tag
-            </Link>{' '}
-            me in your posts
+            {dogDescription}
           </Text>
   
           <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
@@ -87,16 +86,6 @@ import {
             <Button
               flex={1}
               fontSize={'sm'}
-              rounded={'full'}
-              _focus={{
-                bg: 'gray.200',
-              }}>
-              Message
-            </Button>
-            <Button
-              flex={1}
-              fontSize={'sm'}
-              rounded={'full'}
               bg={'blue.400'}
               color={'white'}
               boxShadow={
@@ -108,7 +97,7 @@ import {
               _focus={{
                 bg: 'blue.500',
               }}>
-              Follow
+              Message
             </Button>
           </Stack>
         </Box>

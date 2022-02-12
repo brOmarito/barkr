@@ -7,6 +7,7 @@ import EditProfileForm from './Profile/EditProfileForm';
 import { Route, Switch, } from 'react-router-dom';
 import  ExploreContainer  from './Explore/ExploreContainer';
 import EventsContainer from './Events/Events';
+import SmallWithSocial from '../../components/Navbar/Footer';
 
 const Dashboard = () => {
   return (
@@ -22,6 +23,7 @@ const Dashboard = () => {
         </Switch>
         <ChatList />
       </Container>
+      <SmallWithSocial/>
     </Container>
   )
 }
