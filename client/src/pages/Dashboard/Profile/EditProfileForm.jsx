@@ -129,7 +129,7 @@ const EditProfileForm = () => {
                   </Box>
                 </Flex>
                 <Box>
-                  <HStack>
+                  <HStack display='flex' minW='100%' justifyContent='space-between'>
                     <Checkbox
                       type='checkbox'
                       name='lookingForLove'
