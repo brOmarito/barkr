@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import MessageBox from "./MessageBox";
+import ChatFeed from "./ChatFeed"
 import React from "react";
 
 const ChatContainer = () => {
@@ -7,12 +7,12 @@ const ChatContainer = () => {
     <Flex
       direction="column"
       alignItems="center"
-      justifyContent="center"
+      justifyContent="flex-start"
       position="relative"
-      minHeight="100vh"
-      bg="_hoveredPurple"
+      minHeight="50vh"
+      bgColor="cyan.500"
     >
-      < MessageBox />
+      < ChatFeed />
     </Flex>
   );
 };

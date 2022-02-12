@@ -1,14 +1,15 @@
 import { Flex, Tag, Text, Box } from '@chakra-ui/react'
 import moment from "moment";
 
-const MessageBox = () => {
-  const isMine = true,
-        message = {
-          text: "test",
-          sender: "sean",
-          createdAt: Date.now(),
-        }
-  
+const MessageBox = (props) => {
+  // const isMine = true,
+  //       message = {
+  //         text: "test",
+  //         sender: "sean",
+  //         createdAt: Date.now(),
+  //       }
+  console.log(props)
+  const {message: {message}, isMine} = props
   
   return (
     <Flex my={2} p={2}>
@@ -16,7 +17,7 @@ const MessageBox = () => {
       <Tag
         variant="subtle"
         mb={2}
-        bg={isMine ? "_purple" : "gray.500"}
+        bg={isMine ? "green.600" : "gray.500"}
         color="white"
         ml={isMine ? "auto" : undefined}
         mr={isMine ? undefined : "auto"}
