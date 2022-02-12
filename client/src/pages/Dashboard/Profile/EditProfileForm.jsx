@@ -1,6 +1,5 @@
 import {
   Flex,
-  Avatar,
   Image,
   Box,
   FormControl,
@@ -9,7 +8,6 @@ import {
   InputGroup,
   HStack,
   VStack,
-  InputRightElement,
   Stack,
   Button,
   Heading,
@@ -26,6 +24,8 @@ import { useMutation } from '@apollo/client';
 import { useFormik } from 'formik';
 import { UPDATE_PROFILE } from '../../../utils/mutations'
 
+import {stateAbbreviations} from './stateAbbreviations'
+
 
 const EditProfileForm = () => {
   const [updateProfile, { error }] = useMutation(UPDATE_PROFILE);
@@ -37,7 +37,7 @@ const EditProfileForm = () => {
       dogBreed: "",
       dogDescription: "",
       lookingForLove: false,
-      lookForFriends: false,
+      lookingForFriends: false,
       city: "",
       state: "",
       userId: Auth.getProfile().data._id,
@@ -46,6 +46,7 @@ const EditProfileForm = () => {
     onSubmit: async (values) => {
       try {
         console.log(values)
+        console.log(stateAbbreviations)
         const { data } = await updateProfile({
           variables: {...values}
         })
@@ -58,7 +59,7 @@ const EditProfileForm = () => {
   })
 
   return (
-    <Flex flex='2' justifyContent='center'>
+    <Flex flex='3' justifyContent='center'>
       <Box
         minW='100%'
         bg={useColorModeValue('white', 'gray.700')}
@@ -66,9 +67,9 @@ const EditProfileForm = () => {
         <Stack spacing={4} minW='100%'>
           <form onSubmit={formik.handleSubmit}>
             <HStack display='flex'>
-              <VStack flex='1' >
-                <Box>
-                  <FormControl >
+              <VStack flex='1' alignItems="start" >
+                <Box width="100%">
+                  <FormControl>
                     <FormLabel>Name</FormLabel>
                     <Input
                       id="dogName"
@@ -80,7 +81,7 @@ const EditProfileForm = () => {
                     />
                   </FormControl>
                 </Box>
-                <Box>
+                <Box width="100%">
                   <FormControl>
                     <FormLabel>Breed</FormLabel>
                     <Input
@@ -93,7 +94,7 @@ const EditProfileForm = () => {
                     />
                   </FormControl>
                 </Box>
-                <Box>
+                <Box width="100%">
                   <FormControl>
                     <FormLabel>City</FormLabel>
                     <Input
@@ -106,7 +107,7 @@ const EditProfileForm = () => {
                     />
                   </FormControl>
                 </Box>
-                <Box>
+                <Box width="100%">
                   <FormControl>
                     <FormLabel>State</FormLabel>
                     <Input
@@ -125,7 +126,7 @@ const EditProfileForm = () => {
                       type='checkbox'
                       name='lookingForLove'
                       id='lookingForLove'
-                      // value={formik.values.lookingForLove}
+                      onChange={formik.handleChange}
                     >
                       Looking for Love?
                     </Checkbox>
@@ -133,6 +134,7 @@ const EditProfileForm = () => {
                       type='checkbox'
                       name='lookingForFriends'
                       id='lookingForFriends'
+                      onChange={formik.handleChange}
                     >
                       Looking for Friends?
                     </Checkbox>
@@ -140,8 +142,9 @@ const EditProfileForm = () => {
                 </Box>
               </VStack>
 
-              <Box boxSize='sm' display='flex' flex='1'>
-                <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' />
+              <Box boxSize='sm' display='flex' flex='1' flexDirection="column" alignItems="center" justifyContent="center">
+                <Image src='https://bit.ly/dan-abramov' objectFit="contain" alt='Dan Abramov' />
+                <Link>Edit Profile Picture</Link>
               </Box>
             </HStack>
             <FormControl>
