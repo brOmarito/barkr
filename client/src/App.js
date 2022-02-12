@@ -64,6 +64,7 @@ function App() {
             {/* <Dashboard /> */}
             {/* <SignUp /> */}
             {/* <Login /> */}
+          
           </ChakraProvider>
         </>
       </Router>

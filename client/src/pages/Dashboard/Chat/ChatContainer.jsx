@@ -2,7 +2,7 @@ import { Flex, Box } from '@chakra-ui/react'
 
 const ChatContainer = () => {
   return (
-    <Flex flex='2' justifyContent='center'>
+    <Flex flex='3' justifyContent='center'>
       ChatContainer
     </Flex>
   )

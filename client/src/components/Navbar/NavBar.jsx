@@ -78,7 +78,6 @@ const NavBar = () => {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem>Link 1</MenuItem>
                 <MenuItem>Account Settings</MenuItem>
                 <MenuDivider />
                 <MenuItem>Logout</MenuItem>
