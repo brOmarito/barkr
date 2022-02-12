@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch, } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react'
 import NavBar from './components/Navbar/NavBar';
 import Login from './pages/Login'
@@ -51,12 +51,17 @@ function App() {
       <Router>
         <>
           <ChakraProvider>
-            {/* <Switch>
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route  exact path="/dashboard" component={Dashboard} />
-            </Switch> */}
-            <Dashboard />
+
+            <Switch>
+            <Route exact path="/">
+              {!Auth.loggedIn() ? <Redirect to="/login" /> : <Dashboard />}
+            </Route>
+              <Route path="/login" component={Login} />
+              <Route path="/Signup" component={SignUp} />
+              {/* <Route path="/Profile" component={Pro} />
+              <Route path="/Signup" component={SignUp} /> */}
+            </Switch>
+            {/* <Dashboard /> */}
             {/* <SignUp /> */}
             {/* <Login /> */}
           
@@ -64,6 +69,7 @@ function App() {
         </>
       </Router>
     </ApolloProvider >
+
 
   );
 }
