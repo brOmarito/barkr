@@ -18,6 +18,7 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import Auth from '../../utils/auth';
 
 const Links = ['Dashboard', 'Explore', 'Profile'];
 
@@ -80,7 +81,9 @@ const NavBar = () => {
               <MenuList>
                 <MenuItem>Account Settings</MenuItem>
                 <MenuDivider />
-                <MenuItem>Logout</MenuItem>
+                <Button variant="link" onClick={() => Auth.logout() }>
+                  <MenuItem>Logout</MenuItem>
+                </Button>
               </MenuList>
             </Menu>
           </Flex>

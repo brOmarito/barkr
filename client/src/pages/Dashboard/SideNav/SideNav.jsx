@@ -19,15 +19,15 @@ import { IconType } from 'react-icons';
 import { Link } from 'react-router-dom';
 
 const LinkItems = [
-  { name: 'Profile', icon: FiHome, to: "/profile" },
-  { name: 'Explore', icon: FiCompass, to: "/explore" },
-  { name: 'Messages', icon: FiMail, to: "/chat" },
-  { name: 'Events', icon: FiCalendar, to: "/events" },
+  { name: 'Profile', icon: FiHome, to: "profile" },
+  { name: 'Explore', icon: FiCompass, to: "explore" },
+  { name: 'Messages', icon: FiMail, to: "chat" },
+  { name: 'Events', icon: FiCalendar, to: "events" },
 ];
 
 const NavItem = ({ icon, to, children, ...rest }) => {
   return (
-    <Link width="100%" href='#' to={to} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    // <Link width="100%" href='#' to={to} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
         align="center"
         p="4"
@@ -52,11 +52,11 @@ const NavItem = ({ icon, to, children, ...rest }) => {
           />
         )}
       </Flex>
-    </Link>
+    // </Link>
   );
 };
 
-const SideNav = () => {
+const SideNav = (props) => {
   return (
     <Flex flex='1' justifyContent='center' pt={4} borderRight="1px" borderRightColor="#EDF2F7">
       <VStack>
@@ -68,7 +68,7 @@ const SideNav = () => {
         </VStack>
         <VStack minW="100%" alignItems="end">
           {LinkItems.map((link) => (
-            <NavItem mminW="100%" key={link.name} icon={link.icon} to={link.to}>
+            <NavItem mminW="100%" key={link.name} icon={link.icon} to={link.to} onClick={()=>props.clickHandler(link.to)}>
               {link.name}
             </NavItem>
           ))}
