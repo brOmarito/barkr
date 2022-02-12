@@ -16,15 +16,16 @@ import {
   Link,
   Textarea,
   Checkbox,
-  CheckboxGroup
+  Select
+
 } from '@chakra-ui/react'
 
 import Auth from '../../../utils/auth'
 import { useMutation } from '@apollo/client';
-import { useFormik } from 'formik';
+import { useFormik, Field } from 'formik';
 import { UPDATE_PROFILE } from '../../../utils/mutations'
 
-import {stateAbbreviations} from './stateAbbreviations'
+import { stateAbbreviations } from './stateAbbreviations'
 
 
 const EditProfileForm = () => {
@@ -46,9 +47,9 @@ const EditProfileForm = () => {
     onSubmit: async (values) => {
       try {
         console.log(values)
-        console.log(stateAbbreviations)
+
         const { data } = await updateProfile({
-          variables: {...values}
+          variables: { ...values }
         })
 
       } catch (err) {
@@ -94,34 +95,48 @@ const EditProfileForm = () => {
                     />
                   </FormControl>
                 </Box>
-                <Box width="100%">
-                  <FormControl>
-                    <FormLabel>City</FormLabel>
-                    <Input
-                      id="city"
-                      name='city'
-                      type="text"
-                      onChange={formik.handleChange}
+                <Flex minW='100%' justifyContent='space-between'>
+                  <Box width="100%" mr={2}>
+                    <FormControl>
+                      <FormLabel>City</FormLabel>
+                      <Input
+                        id="city"
+                        name='city'
+                        type="text"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.city}
+                      />
+                    </FormControl>
+                  </Box>
+                  <Box width="100%">
+                    <FormControl>
+                      <FormLabel>State</FormLabel>
+                      <Select placeholder='Select State' 
                       onBlur={formik.handleBlur}
-                      value={formik.values.city}
-                    />
-                  </FormControl>
-                </Box>
-                <Box width="100%">
-                  <FormControl>
-                    <FormLabel>State</FormLabel>
-                    <Input
-                      id="state"
-                      name='state'
-                      type="text"
                       onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.state}
-                    />
-                  </FormControl>
-                </Box>
+                      // value={formik.values.state}
+                      >
+                        {stateAbbreviations.map((state) => {
+                          return (
+                            <option value={state} key={state}>{state}</option>
+                          )
+                        })}
+      
+                      </Select>
+                      {/* <Input
+                        id="state"
+                        name='state'
+                        type="text"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.state}
+                      /> */}
+                    </FormControl>
+                  </Box>
+                </Flex>
                 <Box>
-                  <HStack>
+                  <HStack display='flex' minW='100%' justifyContent='space-between'>
                     <Checkbox
                       type='checkbox'
                       name='lookingForLove'
