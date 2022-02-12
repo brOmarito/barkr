@@ -6,8 +6,6 @@ import Auth from "../../../utils/auth"
 
 const Chat = () => {
   
-    const { username } = Auth.getProfile()
-    let me = username
   
 
   // const { data } = useMessagesQuery();
@@ -150,8 +148,8 @@ const Chat = () => {
     me: "sean"
   };
 
-  const messages = ChatfeedProps.messages
-  me = ChatfeedProps.me
+  const messages = ChatfeedProps.messages,
+        me = ChatfeedProps.me
 
   if (messages) {
     return (
