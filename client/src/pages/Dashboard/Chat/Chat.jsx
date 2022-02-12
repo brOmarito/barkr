@@ -5,9 +5,7 @@ import Auth from "../../../utils/auth"
 
 
 const Chat = () => {
-  // const me = isAuth();
-
-  if (Auth.loggedIn()) {
+  
     const { username } = Auth.getProfile()
     let me = username
   
@@ -205,8 +203,6 @@ const Chat = () => {
     );
   } else {
     return null;
-  }
-
   }
 };
 
