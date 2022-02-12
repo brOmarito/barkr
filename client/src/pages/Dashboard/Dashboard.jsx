@@ -17,13 +17,12 @@ const Dashboard = () => {
   return (
     <Container display='flex' flexDirection='column' minW='100vw' minH='100vh' p={0}>
       <NavBar />
-      <Container display='flex' flex='1' minW='100%'>
+      <Container display='flex' flex='1' minW='100%' px="20rem">
         <SideNav clickHandler={changePage} />
         {activePage === "profile" && <EditProfileForm />}
         {activePage === "explore" && <ExploreContainer />}
         {activePage === "events" && <EventsContainer />}
         {activePage === "chat" && <ChatContainer />}
-        <ChatList />
       </Container>
       <SmallWithSocial/>
     </Container>
