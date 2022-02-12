@@ -1,14 +1,16 @@
 import { Box, Flex, Input } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import ChatFeed from "./ChatFeed";
-// import {
-//   useMessagesQuery,
-//   useNewMessageSubscription,
-//   useSendMessageMutation,
-// } from "../generated/types.d";
+import Auth from "../../../utils/auth"
+
 
 const Chat = () => {
   // const me = isAuth();
+
+  if (Auth.loggedIn()) {
+    const { username } = getProfile()
+    me = username
+  
 
   // const { data } = useMessagesQuery();
   // const { data: newMessage } = useNewMessageSubscription();
@@ -204,8 +206,9 @@ const Chat = () => {
   } else {
     return null;
   }
+
+  }
 };
 
-// export const getStaticProps = async () => {};
 
 export default Chat;
