@@ -8,8 +8,8 @@ const Chat = () => {
   // const me = isAuth();
 
   if (Auth.loggedIn()) {
-    const { username } = getProfile()
-    const me = username
+    const { username } = Auth.getProfile()
+    let me = username
   
 
   // const { data } = useMessagesQuery();
