@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react'
 import NavBar from './components/Navbar/NavBar';
 import Login from './pages/Login'
@@ -52,13 +52,14 @@ function App() {
         <>
           <ChakraProvider>
             {/* <Switch>
-              <Route path="/Dashboard" component={Dashboard} onEnter={requireAuth} />
-              <Route exact path="/" component={Login} />
-              <Route exact path="/Signup" component={SignUp} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route  exact path="/dashboard" component={Dashboard} />
             </Switch> */}
             <Dashboard />
             {/* <SignUp /> */}
             {/* <Login /> */}
+          
           </ChakraProvider>
         </>
       </Router>
