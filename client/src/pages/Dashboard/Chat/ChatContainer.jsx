@@ -1,6 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import Chat from "./Chat"
 import React from "react";
+import ChatList from "./ChatList";
 
 const ChatContainer = () => {
   return (
@@ -13,9 +14,10 @@ const ChatContainer = () => {
       minHeight="50vh"
       bgColor="gray.50"
     >
-      < Chat />
+    < Chat />
     </Flex>
-  );
+
+);
 };
 
 export default ChatContainer
