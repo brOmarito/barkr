@@ -82,9 +82,9 @@ const EditProfileForm = ({ initialValues }) => {
   })
 
   return (
-    <Flex flex='3' justifyContent='center'>
+    <Flex flex='4' justifyContent='center'>
       <Box
-        minW='100%'
+        
         bg={useColorModeValue('white', 'gray.700')}
         p={8}>
         <Stack spacing={4} minW='100%'>
@@ -177,7 +177,7 @@ const EditProfileForm = ({ initialValues }) => {
               </VStack>
 
               <Box boxSize='sm' display='flex' flex='1' flexDirection="column" alignItems="center" justifyContent="center">
-                <Image src='https://res.cloudinary.com/dkmlyifpy/image/upload/v1644773751/photo-1644187689076-37b6126afada_vwajd2.jpg' objectFit="contain" alt='Dan Abramov' />
+                <Image src='https://res.cloudinary.com/dkmlyifpy/image/upload/v1644773751/photo-1644187689076-37b6126afada_vwajd2.jpg' objectFit="scale-down" alt='Dan Abramov' />
                 <Link>Edit Profile Picture</Link>
               </Box>
             </HStack>
