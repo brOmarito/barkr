@@ -79,7 +79,7 @@ const profileData = await Profile.insertMany([
         state: "GA",
         lookingForFriends: true,
         lookingForLove: true,
-        image: "husky-barkr.jpg"
+        image: "https://res.cloudinary.com/dkmlyifpy/image/upload/v1644773831/photo-1644080635481-1eec53caefcf_qsvaav.jpg"
     },
     {
         userId: users[1]._id,
@@ -91,7 +91,7 @@ const profileData = await Profile.insertMany([
         state: "GA",
         lookingForFriends: true,
         lookingForLove: true,
-        image: "boxer-barkr.jpg"
+        image: "https://res.cloudinary.com/dkmlyifpy/image/upload/v1644773751/photo-1644187689076-37b6126afada_vwajd2.jpg"
 
     },
     {
@@ -104,7 +104,7 @@ const profileData = await Profile.insertMany([
         state: "GA",
         lookingForFriends: true,
         lookingForLove: true,
-        image: "blacklab-barkr.jpg"
+        image: "https://res.cloudinary.com/dkmlyifpy/image/upload/v1644773903/photo-1644080638116-40d09adb97a0_wslkiy.jpg"
     },
     {
         userId: users[3]._id,
@@ -116,7 +116,7 @@ const profileData = await Profile.insertMany([
         state: "GA",
         lookingForFriends: true,
         lookingForLove: true,
-        image: "goldretriever-barkr.jpg"
+        image: "https://res.cloudinary.com/dkmlyifpy/image/upload/v1644773925/photo-1643208411980-7d73e38cd668_qmpahh.jpg"
     },
     {
         userId: users[4]._id,
@@ -128,7 +128,7 @@ const profileData = await Profile.insertMany([
         state: "GA",
         lookingForFriends: true,
         lookingForLove: true,
-        image: "goldendoodle-barkr.jpg",
+        image: "https://res.cloudinary.com/dkmlyifpy/image/upload/v1644773943/photo-1642466286894-3c859889b043_kkmwls.jpg",
     },
     {
         userId: users[5]._id,
@@ -140,7 +140,7 @@ const profileData = await Profile.insertMany([
         state: "GA",
         lookingForFriends: true,
         lookingForLove: true,
-        image: "rottweiler-barkr.jpg",
+        image: "https://res.cloudinary.com/dkmlyifpy/image/upload/v1644773989/photo-1639745161241-ad065e77e0c8_xujaqi.jpg",
     },
     {
         userId: users[6]._id,
@@ -152,7 +152,7 @@ const profileData = await Profile.insertMany([
         state: "GA",
         lookingForFriends: true,
         lookingForLove: true,
-        image: "doberman-barkr.jpg",
+        image: "https://res.cloudinary.com/dkmlyifpy/image/upload/v1644773965/photo-1640909475537-edb56b69f7de_kdzazz.jpg",
     },
     {
         userId: users[7]._id,
@@ -164,7 +164,7 @@ const profileData = await Profile.insertMany([
         state: "GA",
         lookingForFriends: true,
         lookingForLove: true,
-        image: "uga-barkr.jpg",
+        image: "https://res.cloudinary.com/dkmlyifpy/image/upload/v1644774021/photo-1637331971670-54cd311bae5c_x7lz3t.jpg",
     },
 ])
 
