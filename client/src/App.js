@@ -4,6 +4,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import NavBar from './components/Navbar/NavBar';
 import Login from './pages/Login'
 import SignUp from './pages/Signup'
+import SplashPage from './pages/SplashPage'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Auth from './utils/auth';
 import { WebSocketLink } from '@apollo/client/link/ws';
@@ -71,8 +72,9 @@ function App() {
           <ChakraProvider>
             <Switch>
               <Route exact path="/">
-                {!Auth.loggedIn() ? <Redirect to="/login" /> : <Dashboard />}
+                {!Auth.loggedIn() ? <Redirect to="/welcome" /> : <Dashboard />}
               </Route>
+              <Route path="/welcome" component={SplashPage} />
               <Route path="/login" component={Login} />
               <Route path="/Signup" component={SignUp} />
             </Switch>
