@@ -1,7 +1,12 @@
-// const db = require('../config/connection');
+const db = require('../config/connection');
 const { User } = require('../models');
 
-const userData = [
+db.once('open', async () => {
+
+    await User.deleteMany();
+
+
+const userData =  await User.insertMany([
     {
         firstName: 'Frank',
         lastName: 'Smith',
@@ -27,7 +32,7 @@ const userData = [
         firstName: 'Eric',
         lastName: 'Taylor',
         username: 'eTaylor',
-        email: 'bbob@testmail.com',
+        email: 'bbobb@testmail.com',
         password: 'password12345'
     },
     {
@@ -58,10 +63,13 @@ const userData = [
         email: 'Ksmart@testmail.com',
         password: 'password12345'
     },
-];
+]);
 console.log('users seeded')
 
-const seedUsers = () => User.bulkCreate(userData);
+process.exit();
 
-module.exports = seedUsers;
+});
+
+
+
 
