@@ -46,15 +46,13 @@ function App() {
       <Router>
         <>
           <ChakraProvider>
-
             <Switch>
-            <Route exact path="/">
-              {!Auth.loggedIn() ? <Redirect to="/login" /> : <Dashboard />}
-            </Route>
+              <Route exact path="/">
+                {!Auth.loggedIn() ? <Redirect to="/login" /> : <Dashboard />}
+              </Route>
               <Route path="/login" component={Login} />
               <Route path="/Signup" component={SignUp} />
             </Switch>
-          
           </ChakraProvider>
         </>
       </Router>
