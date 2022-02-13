@@ -1,27 +1,25 @@
 import {
   Flex,
-  Box,
-  Container,
   Heading,
   Text
 } from '@chakra-ui/react'
-import SocialProfileSimple from './ProfileCard'
+import ProfileCard from './ProfileCard'
 
-const ExploreContainer = () => {
+const ExploreContainer = ({ clickHandler }) => {
   return (
     <Flex flex='4' flexDirection='column' alignItems='center' mt={2}>
       <Heading>Explore</Heading>
       <Text>Time to make some dog friends</Text>
       <Flex flex='3' justifyContent='space-evenly' flexWrap="wrap">
-        <SocialProfileSimple />
-        <SocialProfileSimple />
-        <SocialProfileSimple />
-        <SocialProfileSimple />
-        <SocialProfileSimple />
-        <SocialProfileSimple />
-        </Flex>
+        <ProfileCard clickHandler={clickHandler} />
+        <ProfileCard clickHandler={clickHandler} />
+        <ProfileCard clickHandler={clickHandler} />
+        <ProfileCard clickHandler={clickHandler} />
+        <ProfileCard clickHandler={clickHandler} />
+        <ProfileCard clickHandler={clickHandler} />
       </Flex>
-      )
+    </Flex>
+  )
 }
 
-      export default ExploreContainer
+export default ExploreContainer
