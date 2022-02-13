@@ -25,7 +25,7 @@ import Auth from '../../../utils/auth'
 import { useMutation } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 
-import { useFormik, Field } from 'formik';
+import { useFormik, Formik, Form, Field } from 'formik';
 
 import { UPDATE_PROFILE } from '../../../utils/mutations'
 import { QUERY_SINGLE_PROFILE } from '../../../utils/queries';
@@ -122,10 +122,13 @@ const EditProfileForm = () => {
                   <Box width="100%">
                     <FormControl>
                       <FormLabel>State</FormLabel>
-                      <Select placeholder='Select State' 
+                      <Select
+                      placeholder='Select State' 
+                      as="select"
+                      name="state"
                       onBlur={formik.handleBlur}
                       onChange={formik.handleChange}
-                      // value={formik.values.state}
+                      value={formik.values.state}
                       >
                         {stateAbbreviations.map((state) => {
                           return (

@@ -25,7 +25,7 @@ const LinkItems = [
 
 const NavItem = ({ icon, to, children, ...rest }) => {
   return (
-    // <Link width="100%" href='#' to={to} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <Link width="100%" href='#' style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
         align="center"
         p="4"
@@ -50,7 +50,7 @@ const NavItem = ({ icon, to, children, ...rest }) => {
           />
         )}
       </Flex>
-    // </Link>
+   </Link>
   );
 };
 
