@@ -36,20 +36,6 @@ import { useEffect, useState } from 'react'
 
 const EditProfileForm = ({ initialValues }) => {
 
-  // const [currentProfile, setCurrentProfile] = useState({});
-
-  // const { loading, data } = useQuery(QUERY_SINGLE_PROFILE, {
-  //   variables: { userId: Auth.getProfile().data._id }
-  // });
-
-  // useEffect(() => {
-  //   let profile = data.profile;
-  //   setCurrentProfile(profile)
-  //   console.log(profile)
-  // }, [])
-
-  // console.log(currentProfile)
-
   const {
     bio,
     dogName,
@@ -62,15 +48,7 @@ const EditProfileForm = ({ initialValues }) => {
     image
   } = initialValues
 
-
-
-
-
   const [updateProfile, { error: updateError }] = useMutation(UPDATE_PROFILE);
-
-
-
-
 
   const formik = useFormik({
     initialValues: {
@@ -93,6 +71,8 @@ const EditProfileForm = ({ initialValues }) => {
         const { data } = await updateProfile({
           variables: { ...values }
         })
+
+        window.location.reload()
 
       } catch (err) {
 
@@ -175,6 +155,7 @@ const EditProfileForm = ({ initialValues }) => {
                 <Box>
                   <HStack display='flex' minW='100%' justifyContent='space-between'>
                     <Checkbox
+                      isChecked={formik.values.lookingForLove ? true : false}
                       type='checkbox'
                       name='lookingForLove'
                       id='lookingForLove'
@@ -183,6 +164,7 @@ const EditProfileForm = ({ initialValues }) => {
                       Looking for Love?
                     </Checkbox>
                     <Checkbox
+                      isChecked={formik.values.lookingForFriends ? true : false}
                       type='checkbox'
                       name='lookingForFriends'
                       id='lookingForFriends'
