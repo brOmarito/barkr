@@ -6,20 +6,43 @@ import Login from './pages/Login'
 import SignUp from './pages/Signup'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Auth from './utils/auth';
-
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { split, HttpLink } from '@apollo/client';
+import { getMainDefinition } from '@apollo/client/utilities';
 
 
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-const httpLink = createHttpLink({
-  uri: '/graphql',
+const PORT = process.env.PORT || 3001;
+
+
+const httpLink = new HttpLink({
+  uri: `http://localhost:${PORT}/graphql`,
 });
+
+const wsLink = new WebSocketLink({
+  uri: `ws://localhost:${PORT}/subscriptions`,
+  options: {
+    reconnect: true
+  }
+});
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink,
+);
 
 
 const authLink = setContext((_, { headers }) => {
@@ -35,7 +58,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: authLink.concat(splitLink),
   cache: new InMemoryCache(),
 });
 
