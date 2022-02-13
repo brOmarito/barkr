@@ -11,6 +11,7 @@ import { useState } from 'react';
 
 const Dashboard = () => {
   const [activePage, setActivePage] = useState("explore")
+  
   function changePage(page) {
     setActivePage(page)
   }

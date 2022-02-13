@@ -32,12 +32,25 @@ import { QUERY_SINGLE_PROFILE } from '../../../utils/queries';
 
 import { stateAbbreviations } from './stateAbbreviations'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const EditProfileForm = () => {
 
+  const [currentProfile, setCurrentProfile]=useState({})
+
   const [updateProfile, { error: updateError }] = useMutation(UPDATE_PROFILE);
-  // const [queryProfile, { error: queryError }] = useMutation(QUERY_SINGLE_PROFILE);
+
+  const {loading, data} = useQuery(QUERY_SINGLE_PROFILE, {
+    variables: { userId: Auth.getProfile().data._id}
+  });
+
+  useEffect(() => {
+    let profile = data.profile;
+    setCurrentProfile(profile)
+    console.log(profile.dogName)
+  }, [])
+  console.log(currentProfile)
+ 
 
   const formik = useFormik({
     initialValues: {
@@ -161,7 +174,7 @@ const EditProfileForm = () => {
               </VStack>
 
               <Box boxSize='sm' display='flex' flex='1' flexDirection="column" alignItems="center" justifyContent="center">
-                <Image src='https://bit.ly/dan-abramov' objectFit="contain" alt='Dan Abramov' />
+                <Image src='https://res.cloudinary.com/dkmlyifpy/image/upload/v1644773751/photo-1644187689076-37b6126afada_vwajd2.jpg' objectFit="contain" alt='Dan Abramov' />
                 <Link>Edit Profile Picture</Link>
               </Box>
             </HStack>
