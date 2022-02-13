@@ -25,6 +25,7 @@ const Dashboard = () => {
   const {loading, data} = useQuery(QUERY_SINGLE_PROFILE, {
     variables: { userId: Auth.getProfile().data._id}
   });
+  console.log('user:', data)
 
   useEffect(() => {
     if (loading) return null

@@ -32,14 +32,23 @@ export const QUERY_PROFILES = gql`
   query queryProfiles {
     profiles {
       userId
-        bio
-        dogName
-        dogBreed
-        city
-        state
-        dogDescription
-        lookingForLove
-        lookingForFriends 
+      bio
+      dogName
+      dogBreed
+      city
+      state
+      dogDescription
+      lookingForLove
+      lookingForFriends
     }
   }
 `
+
+// query userProfiles {
+//   users {
+//     firstName
+//     lastName
+//     username
+//     email
+//   }
+// }

@@ -14,7 +14,8 @@ import {
   // import { QUERY_SINGLE_PROFILE } from '../../../utils/queries';
 
   export default function ProfileCard(props) {
-    const {image, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state, clickHandler } = props
+    const { profile, clickHandler } = props
+    const { bio, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state } = profile
     // const [queryProfile, { error }] = useQuery(QUERY_SINGLE_PROFILE);
 
     return (
