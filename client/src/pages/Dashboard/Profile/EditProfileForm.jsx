@@ -34,37 +34,58 @@ import { stateAbbreviations } from './stateAbbreviations'
 
 import { useEffect, useState } from 'react'
 
-const EditProfileForm = () => {
+const EditProfileForm = ({ initialValues }) => {
 
-  const [currentProfile, setCurrentProfile]=useState({})
+  // const [currentProfile, setCurrentProfile] = useState({});
+
+  // const { loading, data } = useQuery(QUERY_SINGLE_PROFILE, {
+  //   variables: { userId: Auth.getProfile().data._id }
+  // });
+
+  // useEffect(() => {
+  //   let profile = data.profile;
+  //   setCurrentProfile(profile)
+  //   console.log(profile)
+  // }, [])
+
+  // console.log(currentProfile)
+
+  const {
+    bio,
+    dogName,
+    dogBreed,
+    dogDescription,
+    lookingForFriends,
+    lookingForLove,
+    city,
+    state,
+    image
+  } = initialValues
+
+
+
+
 
   const [updateProfile, { error: updateError }] = useMutation(UPDATE_PROFILE);
 
-  const {loading, data} = useQuery(QUERY_SINGLE_PROFILE, {
-    variables: { userId: Auth.getProfile().data._id}
-  });
 
-  useEffect(() => {
-    let profile = data.profile;
-    setCurrentProfile(profile)
-    console.log(profile.dogName)
-  }, [])
-  console.log(currentProfile)
- 
+
+
 
   const formik = useFormik({
     initialValues: {
-      bio: "",
-      dogName: "",
-      dogBreed: "",
-      dogDescription: "",
-      lookingForLove: false,
-      lookingForFriends: false,
-      city: "",
-      state: "",
+      bio: bio,
+      dogName: dogName,
+      dogBreed: dogBreed,
+      dogDescription: dogDescription,
+      lookingForLove: lookingForLove,
+      lookingForFriends: lookingForFriends,
+      city: city,
+      state: state,
       userId: Auth.getProfile().data._id,
-      image: "",
+      image: image,
     },
+
     onSubmit: async (values) => {
       try {
         console.log(values)
@@ -134,12 +155,12 @@ const EditProfileForm = () => {
                     <FormControl>
                       <FormLabel>State</FormLabel>
                       <Select
-                      placeholder='Select State'
-                      as="select"
-                      name="state"
-                      onBlur={formik.handleBlur}
-                      onChange={formik.handleChange}
-                      value={formik.values.state}
+                        placeholder='Select State'
+                        as="select"
+                        name="state"
+                        onBlur={formik.handleBlur}
+                        onChange={formik.handleChange}
+                        value={formik.values.state}
                       >
                         {stateAbbreviations.map((state) => {
                           return (
