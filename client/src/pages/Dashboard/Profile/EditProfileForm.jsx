@@ -72,6 +72,8 @@ const EditProfileForm = ({ initialValues }) => {
           variables: { ...values }
         })
 
+        alert('Your profile has been updated!')
+
         window.location.reload()
 
       } catch (err) {
