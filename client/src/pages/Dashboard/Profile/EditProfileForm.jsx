@@ -39,8 +39,6 @@ const EditProfileForm = () => {
   const [updateProfile, { error: updateError }] = useMutation(UPDATE_PROFILE);
   // const [queryProfile, { error: queryError }] = useMutation(QUERY_SINGLE_PROFILE);
 
-  
-
   const formik = useFormik({
     initialValues: {
       bio: "",
@@ -123,7 +121,7 @@ const EditProfileForm = () => {
                     <FormControl>
                       <FormLabel>State</FormLabel>
                       <Select
-                      placeholder='Select State' 
+                      placeholder='Select State'
                       as="select"
                       name="state"
                       onBlur={formik.handleBlur}
@@ -135,7 +133,7 @@ const EditProfileForm = () => {
                             <option value={state} key={state}>{state}</option>
                           )
                         })}
-      
+
                       </Select>
                     </FormControl>
                   </Box>

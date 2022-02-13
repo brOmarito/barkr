@@ -25,6 +25,7 @@ const SocialButton = ({
       cursor={'pointer'}
       as={'a'}
       href={href}
+      target={'_blank'}
       display={'inline-flex'}
       alignItems={'center'}
       justifyContent={'center'}
@@ -53,11 +54,9 @@ export default function SmallWithSocial() {
         align={{ base: 'center', md: 'center' }}>
         <Text>© 2020 Barkr. All rights reserved</Text>
         <Stack direction={'row'} spacing={6}>
-          <Link href={'https://github.com/brOmarito/barkr'} target="_blank">
-            <SocialButton label={'Twitter'}>
-              <FaGithub />
-            </SocialButton>
-          </Link>
+          <SocialButton href={'https://github.com/brOmarito/barkr'} label={'Twitter'}>
+            <FaGithub />
+          </SocialButton>
         </Stack>
       </Container>
     </Box>
