@@ -1,9 +1,10 @@
 const db = require('../config/connection');
-const { User } = require('../models');
+const { User, Profile } = require('../models');
 
 db.once('open', async () => {
 
     await User.deleteMany();
+    await Profile.deleteMany();
 
 
 const userData =  await User.insertMany([
@@ -64,6 +65,110 @@ const userData =  await User.insertMany([
         password: 'password12345'
     },
 ]);
+
+const users = await User.find();
+
+const profileData = await Profile.insertMany([
+    {
+        userId: users[0]._id,
+        bio: "I love dogs so much they're cool",
+        dogName: "Tito",
+        dogBreed: "Husky",
+        dogDescription: "I am a big dog who likes to play fetch",
+        city: "Atlanta",
+        state: "GA",
+        lookingForFriends: true,
+        lookingForLove: true,
+        image: ""
+    },
+    {
+        userId: users[1]._id,
+        bio: "I love dogs so much they're cool",
+        dogName: "Tito",
+        dogBreed: "Husky",
+        dogDescription: "I am a big dog who likes to play fetch",
+        city: "Atlanta",
+        state: "GA",
+        lookingForFriends: true,
+        lookingForLove: true,
+        image: ""
+
+    },
+    {
+        userId: users[2]._id,
+        bio: "I love dogs so much they're cool",
+        dogName: "Tito",
+        dogBreed: "Husky",
+        dogDescription: "I am a big dog who likes to play fetch",
+        city: "Atlanta",
+        state: "GA",
+        lookingForFriends: true,
+        lookingForLove: true,
+        image: ""
+    },
+    {
+        userId: users[3]._id,
+        bio: "I love dogs so much they're cool",
+        dogName: "Tito",
+        dogBreed: "Husky",
+        dogDescription: "I am a big dog who likes to play fetch",
+        city: "Atlanta",
+        state: "GA",
+        lookingForFriends: true,
+        lookingForLove: true,
+        image: ""
+    },
+    {
+        userId: users[4]._id,
+        bio: "I love dogs so much they're cool",
+        dogName: "Tito",
+        dogBreed: "Husky",
+        dogDescription: "I am a big dog who likes to play fetch",
+        city: "Atlanta",
+        state: "GA",
+        lookingForFriends: true,
+        lookingForLove: true,
+        image: "",
+    },
+    {
+        userId: users[5]._id,
+        bio: "I love dogs so much they're cool",
+        dogName: "Tito",
+        dogBreed: "Husky",
+        dogDescription: "I am a big dog who likes to play fetch",
+        city: "Atlanta",
+        state: "GA",
+        lookingForFriends: true,
+        lookingForLove: true,
+        image: "",
+    },
+    {
+        userId: users[6]._id,
+        bio: "I love dogs so much they're cool",
+        dogName: "Tito",
+        dogBreed: "Husky",
+        dogDescription: "I am a big dog who likes to play fetch",
+        city: "Atlanta",
+        state: "GA",
+        lookingForFriends: true,
+        lookingForLove: true,
+        image: "",
+    },
+    {
+        userId: users[7]._id,
+        bio: "I love dogs so much they're cool",
+        dogName: "Tito",
+        dogBreed: "Husky",
+        dogDescription: "I am a big dog who likes to play fetch",
+        city: "Atlanta",
+        state: "GA",
+        lookingForFriends: true,
+        lookingForLove: true,
+        image: "",
+    },
+])
+
+console.log(users);
 console.log('users seeded')
 
 process.exit();
