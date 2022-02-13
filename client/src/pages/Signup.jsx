@@ -45,9 +45,7 @@ export default function SignupCard() {
         })
 
         Auth.login(data.createUser.token)
-        // Currently displaying undefined for username
-        // Commenting out until it's debugged
-        alert('Thanks for signing up!') //+ JSON.stringify(data.username))
+        alert(`Thanks for signing up ${values.username}!`)
       } catch (err) {
         alert('An error occured' + err)
         console.log(err)
