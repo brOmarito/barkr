@@ -81,9 +81,7 @@ const NavBar = () => {
               <MenuList>
                 <MenuItem>Account Settings</MenuItem>
                 <MenuDivider />
-                <Button variant="link" onClick={() => Auth.logout() }>
-                  <MenuItem>Logout</MenuItem>
-                </Button>
+                <MenuItem variant="link" onClick={() => Auth.logout() }>Logout</MenuItem>
               </MenuList>
             </Menu>
           </Flex>

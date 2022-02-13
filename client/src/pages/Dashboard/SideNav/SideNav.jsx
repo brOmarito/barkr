@@ -66,7 +66,7 @@ const SideNav = (props) => {
         </VStack>
         <VStack minW="100%" alignItems="end">
           {LinkItems.map((link) => (
-            <NavItem mminW="100%" key={link.name} icon={link.icon} to={link.to} onClick={()=>props.clickHandler(link.to)}>
+            <NavItem minW="100%" key={link.name} icon={link.icon} to={link.to} onClick={()=>props.clickHandler(link.to)}>
               {link.name}
             </NavItem>
           ))}

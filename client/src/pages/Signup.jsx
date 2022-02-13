@@ -39,14 +39,15 @@ export default function SignupCard() {
     },
     onSubmit: async (values) => {
       try {
-        
+
         const { data } = await createUser({
           variables: { ...values },
         })
 
         Auth.login(data.createUser.token)
-
-        alert('Thanks for signing up!' + JSON.stringify(data.user))
+        // Currently displaying undefined for username
+        // Commenting out until it's debugged
+        alert('Thanks for signing up!') //+ JSON.stringify(data.username))
       } catch (err) {
         alert('An error occured' + err)
         console.log(err)
