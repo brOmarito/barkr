@@ -34,37 +34,36 @@ import { stateAbbreviations } from './stateAbbreviations'
 
 import { useEffect, useState } from 'react'
 
-const EditProfileForm = () => {
+const EditProfileForm = ({ initialValues }) => {
 
-  const [currentProfile, setCurrentProfile]=useState({})
+  const {
+    bio,
+    dogName,
+    dogBreed,
+    dogDescription,
+    lookingForFriends,
+    lookingForLove,
+    city,
+    state,
+    image
+  } = initialValues
 
   const [updateProfile, { error: updateError }] = useMutation(UPDATE_PROFILE);
 
-  const {loading, data} = useQuery(QUERY_SINGLE_PROFILE, {
-    variables: { userId: Auth.getProfile().data._id}
-  });
-
-  useEffect(() => {
-    let profile = data.profile;
-    setCurrentProfile(profile)
-    console.log(profile.dogName)
-  }, [])
-  console.log(currentProfile)
- 
-
   const formik = useFormik({
     initialValues: {
-      bio: "",
-      dogName: "",
-      dogBreed: "",
-      dogDescription: "",
-      lookingForLove: false,
-      lookingForFriends: false,
-      city: "",
-      state: "",
+      bio: bio,
+      dogName: dogName,
+      dogBreed: dogBreed,
+      dogDescription: dogDescription,
+      lookingForLove: lookingForLove,
+      lookingForFriends: lookingForFriends,
+      city: city,
+      state: state,
       userId: Auth.getProfile().data._id,
-      image: "",
+      image: image,
     },
+
     onSubmit: async (values) => {
       try {
         console.log(values)
@@ -72,6 +71,10 @@ const EditProfileForm = () => {
         const { data } = await updateProfile({
           variables: { ...values }
         })
+
+        alert('Your profile has been updated!')
+
+        window.location.reload()
 
       } catch (err) {
 
@@ -81,9 +84,9 @@ const EditProfileForm = () => {
   })
 
   return (
-    <Flex flex='3' justifyContent='center'>
+    <Flex flex='4' justifyContent='center'>
       <Box
-        minW='100%'
+        
         bg={useColorModeValue('white', 'gray.700')}
         p={8}>
         <Stack spacing={4} minW='100%'>
@@ -134,12 +137,12 @@ const EditProfileForm = () => {
                     <FormControl>
                       <FormLabel>State</FormLabel>
                       <Select
-                      placeholder='Select State'
-                      as="select"
-                      name="state"
-                      onBlur={formik.handleBlur}
-                      onChange={formik.handleChange}
-                      value={formik.values.state}
+                        placeholder='Select State'
+                        as="select"
+                        name="state"
+                        onBlur={formik.handleBlur}
+                        onChange={formik.handleChange}
+                        value={formik.values.state}
                       >
                         {stateAbbreviations.map((state) => {
                           return (
@@ -154,6 +157,7 @@ const EditProfileForm = () => {
                 <Box>
                   <HStack display='flex' minW='100%' justifyContent='space-between'>
                     <Checkbox
+                      isChecked={formik.values.lookingForLove ? true : false}
                       type='checkbox'
                       name='lookingForLove'
                       id='lookingForLove'
@@ -162,6 +166,7 @@ const EditProfileForm = () => {
                       Looking for Love?
                     </Checkbox>
                     <Checkbox
+                      isChecked={formik.values.lookingForFriends ? true : false}
                       type='checkbox'
                       name='lookingForFriends'
                       id='lookingForFriends'
@@ -174,7 +179,7 @@ const EditProfileForm = () => {
               </VStack>
 
               <Box boxSize='sm' display='flex' flex='1' flexDirection="column" alignItems="center" justifyContent="center">
-                <Image src='https://res.cloudinary.com/dkmlyifpy/image/upload/v1644773751/photo-1644187689076-37b6126afada_vwajd2.jpg' objectFit="contain" alt='Dan Abramov' />
+                <Image src='https://res.cloudinary.com/dkmlyifpy/image/upload/v1644773751/photo-1644187689076-37b6126afada_vwajd2.jpg' objectFit="scale-down" alt='Dan Abramov' />
                 <Link>Edit Profile Picture</Link>
               </Box>
             </HStack>
