@@ -4,7 +4,8 @@ import {
   Box,
   VStack,
   Image,
-  Text
+  Text,
+  Heading
 
 } from '@chakra-ui/react'
 import {
@@ -55,14 +56,21 @@ const NavItem = ({ icon, to, children, ...rest }) => {
 };
 
 const SideNav = (props) => {
+
+  
+  const { city, dogName, state, dogDescription, image} = props.userInfo
+
   return (
     <Flex flex='1' justifyContent='center' pt={4} borderRight="1px" borderRightColor="#EDF2F7">
       <VStack>
         <VStack minW="100%" mb={3}>
-          <Box display='flex' flex='1' flexDirection="column" alignContent="center" justifyContent="center">
+          <Box display='flex' mb={3} flex='1' flexDirection="column" alignContent="center" justifyContent="center">
             <Image maxW="150px" src='https://bit.ly/dan-abramov' objectFit="contain" borderRadius="full" alt='Dan Abramov'/>
           </Box>
-          <Text align="center" maxW="60%"> Some random info about your dog and what not</Text>
+          <Heading size='md' align="center" maxW="60%">Hello, {dogName}! </Heading>
+          <Text align="center" fontSize='xl' maxW="60%">{dogDescription} </Text>
+          <Text align="center" maxW="60%" color='#808080'> {city}, {state}</Text>
+          
         </VStack>
         <VStack minW="100%" alignItems="end" overflow="hidden">
           {LinkItems.map((link) => (

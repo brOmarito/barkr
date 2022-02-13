@@ -89,7 +89,9 @@ const EditProfileForm = ({ initialValues }) => {
         
         bg={useColorModeValue('white', 'gray.700')}
         p={8}>
-        <Stack spacing={4} minW='100%'>
+           <Heading align='center' >Profile</Heading>
+      <Text align='center'>Tell the world about yourself!</Text>
+        <Stack spacing={4} mt={2} minW='100%'>
           <form onSubmit={formik.handleSubmit}>
             <HStack display='flex'>
               <VStack flex='1' alignItems="start" >
