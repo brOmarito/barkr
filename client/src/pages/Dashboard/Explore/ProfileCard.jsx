@@ -6,23 +6,23 @@ import {
     Text,
     Stack,
     Button,
-    Link,
     Badge,
     useColorModeValue,
   } from '@chakra-ui/react';
-  import { useQuery } from '@apollo/client';
-  import { QUERY_SINGLE_PROFILE } from '../../../utils/queries';
+  // TODO: Remove if not used
+  // import { useQuery } from '@apollo/client';
+  // import { QUERY_SINGLE_PROFILE } from '../../../utils/queries';
 
-  export default function SocialProfileSimple(props) {
-    const {image, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state } = props
+  export default function ProfileCard(props) {
+    const {image, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state, clickHandler } = props
     // const [queryProfile, { error }] = useQuery(QUERY_SINGLE_PROFILE);
-
-
-
 
     return (
       <Center py={6}>
         <Box
+          as='a'
+          href='#'
+          onClick={() => clickHandler('userProfile')}
           maxW={'320px'}
           w={'full'}
           bg={useColorModeValue('white', 'gray.900')}
