@@ -12,7 +12,7 @@ import {
   } from '@chakra-ui/react';
   import { useQuery } from '@apollo/client';
   import { QUERY_SINGLE_PROFILE } from '../../../utils/queries';
-  
+
   export default function SocialProfileSimple(props) {
     const {image, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state } = props
     // const [queryProfile, { error }] = useQuery(QUERY_SINGLE_PROFILE);
@@ -62,7 +62,7 @@ import {
             px={3}>
             {dogDescription}
           </Text>
-  
+
           <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
             <Badge
               px={2}
@@ -86,7 +86,7 @@ import {
               #music
             </Badge>
           </Stack>
-  
+
           <Stack mt={8} direction={'row'} spacing={4}>
             <Button
               flex={1}
