@@ -100,7 +100,7 @@ const resolvers = {
       const chat = await Chat.create({
         roomName: args.roomName,
         users: args.users,
-        messages: []
+        messages: args.messages
       })
     },
 
@@ -110,6 +110,9 @@ const resolvers = {
         userId: args.userId,
         chatId: args.chatId,
       })
+        .then(() => {
+          return message
+        })
         .then(message => {
           pubsub.publish('messageAdded', { messageAdded: message });
         })
@@ -121,7 +124,12 @@ const resolvers = {
   },
 
   Subscription: {
-    
+    messageAdded: withFilter(
+      () => pubsub.asyncIterator('messageAdded'),
+      (payload, args) => {
+        return payload.messageAdded.chatId === args.chatId;
+      }
+    ),
   }
 };
 

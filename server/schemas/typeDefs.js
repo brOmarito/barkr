@@ -29,12 +29,13 @@ type Message {
     createdBy: String!
     createdAt: String!
     text: String!
+    chatId: String!
 }
 
 type Chat {
     _id: ID
     roomName: String!
-    users: [Profile]
+    users: [String]
     messages: [Message]
 }
 
@@ -56,6 +57,7 @@ input MessageInput {
     createdBy: String!
     createdAt: String!
     text: String!
+    chatId: String!
 }
 
 type Auth {
@@ -69,10 +71,10 @@ type Query {
     profile(userId: ID!): Profile 
     profiles: [ Profile ]
     chats: [Chat]
-	  chat(id:Int!): Chat
-	  messages(chatId:Int): [Message]
-	  chatUsers(chatId:Int): [User]
-	  user(id:Int, search:String): User
+	  chat(chatId:String!): Chat
+	  messages(chatId:String): [Message]
+	  chatUsers(chatId:String): [User]
+	  user(_id:ID!): User
 }
 type Mutation {
     login(email: String!, password: String!): Auth
@@ -95,11 +97,11 @@ type Mutation {
        state: String,
        image: String,
         ): Profile
-    addMessage(text: String!, userId: Int!, chatId: Int!): Message
-    createChat(roomName: String!, users: [ProfileInput]!, messages: [MessageInput]): Chat    
+    addMessage(text: String!, userId: Int!, chatId: String!): Message
+    createChat(roomName: String!, users: [String]!, messages: [MessageInput]): Chat    
 }
 type Subscription {
-  messageAdded(chatId: Int!): Message
+  messageAdded(chatId: String!): Message
 }
 `;
 

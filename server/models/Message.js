@@ -15,6 +15,10 @@ const messageSchema = new Schema({
   text: {
     type: String,
     required: true,
+  },
+  chatId: {
+    type: String,
+    required: true
   }
 
 });
