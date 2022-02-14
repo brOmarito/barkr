@@ -51,6 +51,13 @@ input ProfileInput {
     image: String
 }
 
+input MessageInput {
+    _id: ID
+    createdBy: String!
+    createdAt: String!
+    text: String!
+}
+
 type Auth {
     token: String
     user: User
@@ -64,21 +71,18 @@ type Query {
     chats: [Chat]
 	  chat(id:Int!): Chat
 	  messages(chatId:Int): [Message]
-	  users(chatId:Int): [User]
+	  chatUsers(chatId:Int): [User]
 	  user(id:Int, search:String): User
 }
 type Mutation {
     login(email: String!, password: String!): Auth
-
     createUser(
         username: String!, 
         email: String!, firstName: 
         String!, lastName: String!, 
         password: String!
         ): Auth
-
     createProfile(userId: ID!): Profile
-
     updateProfile(
        userId: ID 
        bio: String,
@@ -91,13 +95,12 @@ type Mutation {
        state: String,
        image: String,
         ): Profile
-    
     addMessage(text: String!, userId: Int!, chatId: Int!): Message
-    
-  }
-  type Subscription {
-	  messageAdded(chatId: Int!): Message
-  }
+    createChat(roomName: String!, users: [ProfileInput]!, messages: [MessageInput]): Chat    
+}
+type Subscription {
+  messageAdded(chatId: Int!): Message
+}
 `;
 
 module.exports = typeDefs;

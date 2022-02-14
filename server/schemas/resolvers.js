@@ -1,9 +1,10 @@
 const { User, Message, Profile, Chat } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { withFilter } = require('graphql-subscriptions');
 const { PubSub } = require('graphql-subscriptions');
 const pubsub = new PubSub();
+const { withFilter } = require('graphql-subscriptions');
+const CHAT_CHANGED = 'chat_changed'
 
 const resolvers = {
   Query: {
@@ -95,8 +96,12 @@ const resolvers = {
       );
     },
 
-    createChatRoom: async (parent, args, context) => {
-
+    createChat: async (parent, args, context) => {
+      const chat = await Chat.create({
+        roomName: args.roomName,
+        users: args.users,
+        messages: []
+      })
     },
 
     addMessage: async (obj, args, context) => {
@@ -105,12 +110,6 @@ const resolvers = {
         userId: args.userId,
         chatId: args.chatId,
       })
-        
-      
-      
-      .then(message => {
-          return message.dataValues;
-        })
         .then(message => {
           pubsub.publish('messageAdded', { messageAdded: message });
         })
@@ -118,9 +117,6 @@ const resolvers = {
           console.error(e);
         });
     },
-
-
-
 
   },
 
