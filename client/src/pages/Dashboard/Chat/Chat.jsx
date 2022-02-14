@@ -1,5 +1,5 @@
 import { Box, Flex, Input } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ChatFeed from "./ChatFeed";
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_CHAT } from '../../../utils/queries';

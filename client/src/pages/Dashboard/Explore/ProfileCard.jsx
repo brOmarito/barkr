@@ -9,8 +9,10 @@ import {
     Checkbox,
     useColorModeValue,
   } from '@chakra-ui/react';
+  import { ChatRoomContext } from "../../../utils/GlobalState"
 
   export default function ProfileCard(props) {
+    const { chatRoom, setChatRoomContext } = useContext(ChatRoomContext)
     const { profile, clickHandler } = props
     const { bio, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state, image } = profile
 
