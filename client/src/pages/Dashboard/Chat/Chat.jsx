@@ -6,15 +6,18 @@ import { QUERY_CHAT } from '../../../utils/queries';
 import { ADD_MESSAGE } from '../../../utils/mutations';
 import Auth from "../../../utils/auth"
 import moment from "moment";
+import { ChatRoomContext } from "../../../utils/GlobalState"
 
 
 const Chat = (props) => {
   const me = Auth.getProfile().data.username
+  const { chatRoom, setChatRoomContext } = useContext(ChatRoomContext)
   const { loading, data } = useQuery(QUERY_CHAT, {
-    variables: {chatId: 'testroom'}
+    variables: {chatId: chatRoom}
   })
   const [addMessage, {data2, loading2, error2}] = useMutation(ADD_MESSAGE);
   const [messages, setMessages] = useState();
+  
 
   useEffect(() => {
     if (!loading && data) {
@@ -34,7 +37,7 @@ const Chat = (props) => {
           text: input,
           createdBy,
           createdAt,
-          chatId: 'testroom'
+          chatId: chatRoom
         },
       });
     }

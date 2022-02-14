@@ -8,15 +8,17 @@ import UserProfile from './Profile/UserProfile';
 import ExploreContainer from './Explore/ExploreContainer';
 import EventsContainer from './Events/Events';
 import SmallWithSocial from '../../components/Navbar/Footer';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Auth from '../../utils/auth'
 import { useQuery } from '@apollo/client';
 import { QUERY_SINGLE_PROFILE } from '../../utils/queries';
+import { ChatRoomContext, ChatRoomContextProvider } from "../../utils/GlobalState"
 
 const Dashboard = () => {
   const [activePage, setActivePage] = useState("explore")
   const [currentProfile, setCurrentProfile] = useState({});
   const [viewProfile, setViewProfile] = useState({});
+  const { chatRoom, setChatRoomContext } = useContext(ChatRoomContext)
 
   function changePage(page, profile) {
     setActivePage(page);
@@ -35,6 +37,7 @@ const Dashboard = () => {
   },[loading, data])
 
   return (
+    <ChatRoomContextProvider>
     <Container display='flex' flexDirection='column' minW='100vw' minH='100vh' p={0}>
       <NavBar />
       <Container display='flex' flex='1' minW='100%' px="2rem">
@@ -48,6 +51,7 @@ const Dashboard = () => {
       </Container>
       <SmallWithSocial/>
     </Container>
+    </ChatRoomContextProvider>
   )
 }
 
