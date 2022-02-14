@@ -6,24 +6,29 @@ import {
 import { useQuery } from '@apollo/client';
 import { QUERY_PROFILES } from '../../../utils/queries';
 import ProfileCard from './ProfileCard';
+import { useState, useEffect } from 'react';
 
-const ExploreContainer = ({ clickHandler }) => {
+const ExploreContainer = ({ clickHandler, currentProfile }) => {
   const {loading, data} = useQuery(QUERY_PROFILES);
-  console.log(data);
+  const [profiles, setProfiles] = useState([]);
+
+  // Get all profiles and filter out current user
+  // TODO: Add a message for no users found
+  useEffect(() => {
+    if (loading) return null
+    let profiles = data.profiles;
+    let  filtered = profiles.filter(profile => profile.userId !== currentProfile.userId);
+    setProfiles(filtered)
+  })
+
   return (
     <Flex flex='4' flexDirection='column' alignItems='center' mt={2}>
       <Heading>Explore</Heading>
       <Text>Time to make some dog friends</Text>
       <Flex flex='3' justifyContent='space-evenly' flexWrap="wrap">
-        {/* <ProfileCard clickHandler={clickHandler} />
-        <ProfileCard clickHandler={clickHandler} />
-        <ProfileCard clickHandler={clickHandler} />
-        <ProfileCard clickHandler={clickHandler} />
-        <ProfileCard clickHandler={clickHandler} />
-        <ProfileCard clickHandler={clickHandler} /> */}
-        {/* {data.profiles.map((profile) => (
+        {profiles.map((profile) => (
           <ProfileCard clickHandler={clickHandler} profile={profile} />
-        ))} */}
+        ))}
       </Flex>
     </Flex>
   )

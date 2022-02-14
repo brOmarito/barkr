@@ -6,10 +6,14 @@ import {
     useColorModeValue,
     Heading,
     Text,
+    Checkbox,
+    CheckboxGroup
   } from '@chakra-ui/react'
   import './profile.css';
 
-  const EditProfileForm = () => {
+  const EditProfileForm = ({profile}) => {
+    console.log('Profile:', profile)
+    const { bio, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state, image } = profile
     return (
       <Flex flex='3' justifyContent='center'>
         <Box
@@ -18,16 +22,18 @@ import {
           p={8}>
           <Stack spacing={4} minW='100%'>
             <Box boxSize='sm' display='flex' flex='1' flexDirection="column" alignItems="center" justifyContent="center">
-                <Heading as='h1' size='xl' marginBottom='.5em'>Profile Name</Heading>
-                <Image src='https://bit.ly/dan-abramov' objectFit="contain" alt='Dan Abramov' />
-                <Box boxSize='sm' display='flex' flex='1' flexDirection="column" alignItems="flex-start" justifyContent="center" padding='2em'>
-                    <Text><span className='bolded-text'>Breed:</span> Standard Poodle</Text>
+                <Heading as='h1' size='xl' marginBottom='.5em'>{dogName}</Heading>
+                <Image src={image} objectFit="contain" alt={'Avatar Alt'} fallbackSrc='https://res.cloudinary.com/pariveda-solutions/image/upload/v1644796816/iu_fccg2n.jpg' />
+                <Box boxSize='sm' display='flex' flex='1' flexDirection="column" alignItems="flex-start" justifyContent="center" pt='2em' pb='2em'>
+                    <Text><span className='bolded-text'>Breed:</span> {dogBreed}</Text>
                     <Box boxSize='sm' display='flex' flex='1' flexDirection="row">
-                        <Text><span className='bolded-text'>City:</span> Atlanta</Text>
-                        <Text marginLeft='1em'><span className='bolded-text'>State:</span> GA</Text>
+                        <Text><span className='bolded-text'>City:</span> {city}</Text>
+                        <Text marginLeft='1em'><span className='bolded-text'>State:</span> {state}</Text>
                     </Box>
-                    <Text><span className='bolded-text'>About the Owner:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
-                    <Text><span className='bolded-text'>About the Dog:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
+                    <Text><span className='bolded-text'>About the Owner:</span> {bio}</Text>
+                    <Text><span className='bolded-text'>About the Dog:</span> {dogDescription}</Text>
+                    <Checkbox isChecked={lookingForLove} isReadOnly={true}>Looking For Love</Checkbox>
+                    <Checkbox isChecked={lookingForFriends} isReadOnly={true}>Looking For Friends</Checkbox>
                 </Box>
             </Box>
           </Stack>
