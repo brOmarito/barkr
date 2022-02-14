@@ -107,9 +107,11 @@ const resolvers = {
     addMessage: async (obj, args, context) => {
       const message = await Message.create({
         text: args.text,
-        userId: args.userId,
+        createdBy: args.createdBy,
+        createdAt: args.createdAt,
         chatId: args.chatId,
       })
+      const chat = await Chat.findOneAndUpdate({roomName: args.chatId}, {$addToSet: {messages: message}}, {new: true})
         .then(() => {
           return message
         })

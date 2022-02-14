@@ -97,7 +97,7 @@ type Mutation {
        state: String,
        image: String,
         ): Profile
-    addMessage(text: String!, userId: Int!, chatId: String!): Message
+    addMessage(text: String!, createdBy: String!, createdAt: String! chatId: String!): Message
     createChat(roomName: String!, users: [String]!, messages: [MessageInput]): Chat    
 }
 type Subscription {
