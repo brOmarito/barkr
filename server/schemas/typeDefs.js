@@ -23,15 +23,18 @@ type Profile {
     image: String
 }
 
-type Chat {
-    username: String!
-    timeStamp: String!
-    chatText: String!
+type Message {
+    _id: ID
+    createdBy: String!
+    createdAt: String!
+    text: String!
 }
 
-type Chatroom {
+type Chat {
+    _id: ID
     roomName: String!
-    chats: [Chat]
+    users: [Profile]
+    messages: [Message]
 }
 
 input ProfileInput {
@@ -57,6 +60,11 @@ type Query {
     users: [ User ]
     profile(userId: ID!): Profile 
     profiles: [ Profile ]
+    chats: [Chat]
+	  chat(id:Int!): Chat
+	  messages(chatId:Int): [Message]
+	  users(chatId:Int): [User]
+	  user(id:Int, search:String): User
 }
 type Mutation {
     login(email: String!, password: String!): Auth
@@ -82,8 +90,12 @@ type Mutation {
        state: String,
        image: String,
         ): Profile
-
     
+    addMessage(text: String!, userId: Int!, chatId: Int!): Message
+    
+  }
+  type Subscription {
+	  messageAdded(chatId: Int!): Message
   }
 `;
 

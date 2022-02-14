@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-const Chatroom = require('./Chatroom')
+const Chat = require('./Chat')
 
 
 const userSchema = new Schema(
@@ -28,7 +28,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        chatRooms: [Chatroom.schema],
+        chats: [String],
 
     },
 );
