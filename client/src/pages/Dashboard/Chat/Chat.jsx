@@ -6,12 +6,13 @@ import { QUERY_CHAT } from '../../../utils/queries';
 import { ADD_MESSAGE } from '../../../utils/mutations';
 import Auth from "../../../utils/auth"
 import moment from "moment";
-import { ChatRoomContext } from "../../../utils/GlobalState"
+import { useChatRoomContext } from "../../../utils/GlobalState";
 
 
 const Chat = (props) => {
   const me = Auth.getProfile().data.username
-  const { chatRoom, setChatRoomContext } = useContext(ChatRoomContext)
+  const { chatRoom, changeRoom, getRoom, defaultroom } = useChatRoomContext()
+  getRoom()
   const { loading, data } = useQuery(QUERY_CHAT, {
     variables: {chatId: chatRoom}
   })

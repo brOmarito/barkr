@@ -75,7 +75,7 @@ mutation updateProfile(
   }
 `
 export const CREATE_CHAT = gql`
-  mutation createChat($roomName: String!, $userId: [String]!, $messageInput: [MessageInput]!) {
+  mutation createChat($roomName: String!, $userId: [String]!, $messageInput: [MessageInput]) {
   createChat(roomName: $roomName, users: $userId, messages: $messageInput) {
  		_id
     roomName
