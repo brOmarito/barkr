@@ -26,18 +26,9 @@ const resolvers = {
     profiles: async (parent, context) => {
       return Profile.find()
     },
-    // getChat: async (parent, { username }, context) => {
-    //   if (context.user) {
-    //   return  User.findOne({_id: context.user._id})
-    //     .populate({
-    //       path : 'Chat',
-    //       populate : {
-    //         path : 'Message'
-    //       }
-    //     })
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!')
-    // }
+    getChat: async (parent, { chatId }, context) => {
+      return  Chat.findOne({roomName: chatId})
+    }
   },
 
   Mutation: {

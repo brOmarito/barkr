@@ -53,3 +53,17 @@ export const QUERY_PROFILES = gql`
 //     email
 //   }
 // }
+
+export const QUERY_CHAT = gql`
+  query getChat($chatId: String!) {
+    getChat(chatId: $chatId){
+			roomName
+      users
+      messages {
+        text
+        createdBy
+        createdAt
+      }
+    }
+  }
+`

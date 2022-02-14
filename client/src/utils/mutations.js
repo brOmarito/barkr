@@ -86,6 +86,17 @@ export const CREATE_CHAT = gql`
   }
 }
 `
+
+export const ADD_MESSAGE = gql`
+mutation addMessage($text: String!, $createdBy: String!, $createdAt: String!, $chatId: String!) {
+  addMessage(text: $text, createdBy: $createdBy, createdAt: $createdAt, chatId: $chatId) {
+		text
+    createdBy
+    createdAt
+    chatId
+  }
+}
+`
   ;
 
 

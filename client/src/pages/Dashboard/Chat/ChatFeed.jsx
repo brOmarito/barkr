@@ -18,7 +18,7 @@ const ChatFeed = ({
         {messages?.map((message, key) => (
           <MessageBox
             message={message}
-            isMine={me === message.message.sender}
+            isMine={me === message.createdBy}
             key={key}
           />
         ))}

@@ -1,155 +1,153 @@
 import { Box, Flex, Input } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import ChatFeed from "./ChatFeed";
+import { useQuery } from '@apollo/client';
+import { QUERY_CHAT } from '../../../utils/queries';
 import Auth from "../../../utils/auth"
 
 
 const Chat = () => {
-  
-  
+  const me = Auth.getProfile().data.username
+  const { loading, data } = useQuery(QUERY_CHAT, {
+    variables: {chatId: 'testroom'}
+  })
+  const [messages, setMessages] = useState();
 
   // const { data } = useMessagesQuery();
   // const { data: newMessage } = useNewMessageSubscription();
-  // const [messages, setMessages] = useState();
   // const [sendMessage] = useSendMessageMutation({});
 
-  // useEffect(() => {
-  //   if (data?.messages) {
-  //     setMessages(data.messages);
-  //   }
-  // }, [data]);
+  useEffect(() => {
+    if (!loading && data) {
+      setMessages(data.getChat.messages);
+    }
+  }, [loading, data]);
 
-  // useEffect(() => {
-  //   if (data && messages && newMessage) {
-  //     setMessages([...messages, newMessage?.newMessage]);
-  //   }
-  //   return
-  // }, [newMessage]);
+
 
   // const emitMessage = async (input) => {
-  //   const sender = me?.me.username;
+  //   const createdBy = me?.me.username;
 
-  //   if (sender) {
+  //   if (createdBy) {
   //     await sendMessage({
   //       variables: {
   //         text: input,
-  //         sender,
+  //         createdBy,
   //       },
   //     });
   //   }
   // };
 
-  const ChatfeedProps = {
-    messages: [{
-      message: {
-      text: "test",
-      sender: "sean",
-      createdAt: Date.now(),
-    },
-    key: 1
-    }, {
-      message: {
-      text: "More Testing",
-      sender: "Jacob",
-      createdAt: Date.now(),
-    },
-    key: 2
-    }, {
-      message: {
-      text: "TESTING 3",
-      sender: "Josh",
-      createdAt: Date.now(),
-    },
-    key: 3
-    }, {
-      message: {
-      text: "asetahes;lthaesltkh;aes",
-      sender: "Omar",
-      createdAt: Date.now(),
-    },
-    key: 4
-    }, {
-      message: {
-      text: "Hello",
-      sender: "sean",
-      createdAt: Date.now(),
-    },
-    key: 5
-    }, {
-      message: {
-      text: "these are words here yes",
-      sender: "anotherperson",
-      createdAt: Date.now(),
-    },
-    key: 6
-    }, {
-      message: {
-      text: "ajsketgasletaest",
-      sender: "HUMAN",
-      createdAt: Date.now(),
-    },
-    key: 7
-    }, {
-      message: {
-      text: "as;kthalsehtl;aeskh;tlykhas;lkyhals;khy",
-      sender: "ROBOT",
-      createdAt: Date.now(),
-    },
-    key: 8
-    }, {
-      message: {
-      text: "Hello again",
-      sender: "sean",
-      createdAt: Date.now(),
-    },
-    key: 9
-    }, {
-      message: {
-      text: "asaseraslfjdaser",
-      sender: "sean",
-      createdAt: Date.now(),
-    },
-    key: 9
-    }, {
-      message: {
-      text: "asaseraslfjdaser",
-      sender: "not me",
-      createdAt: Date.now(),
-    },
-    key: 9
-    }, {
-      message: {
-      text: "asaseraslfjdaser",
-      sender: "sean",
-      createdAt: Date.now(),
-    },
-    key: 9
-    }, {
-      message: {
-      text: "asaseraslfjdaser",
-      sender: "sean",
-      createdAt: Date.now(),
-    },
-    key: 9
-    }, {
-      message: {
-      text: "asaseraslfjdaser",
-      sender: "sean",
-      createdAt: Date.now(),
-    },
-    key: 9
-    }, {
-      message: {
-      text: "asaseraslfjdaser",
-      sender: "not me",
-      createdAt: Date.now(),
-    },
-    key: 9}], // message query
-    me: "sean"
-  };
+  // const ChatfeedProps = {
+  //   messages: [{
+  //     message: {
+  //     text: "test",
+  //     createdBy: "sean",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 1
+  //   }, {
+  //     message: {
+  //     text: "More Testing",
+  //     createdBy: "Jacob",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 2
+  //   }, {
+  //     message: {
+  //     text: "TESTING 3",
+  //     createdBy: "Josh",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 3
+  //   }, {
+  //     message: {
+  //     text: "asetahes;lthaesltkh;aes",
+  //     createdBy: "Omar",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 4
+  //   }, {
+  //     message: {
+  //     text: "Hello",
+  //     createdBy: "sean",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 5
+  //   }, {
+  //     message: {
+  //     text: "these are words here yes",
+  //     createdBy: "anotherperson",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 6
+  //   }, {
+  //     message: {
+  //     text: "ajsketgasletaest",
+  //     createdBy: "HUMAN",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 7
+  //   }, {
+  //     message: {
+  //     text: "as;kthalsehtl;aeskh;tlykhas;lkyhals;khy",
+  //     createdBy: "ROBOT",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 8
+  //   }, {
+  //     message: {
+  //     text: "Hello again",
+  //     createdBy: "sean",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 9
+  //   }, {
+  //     message: {
+  //     text: "asaseraslfjdaser",
+  //     createdBy: "sean",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 9
+  //   }, {
+  //     message: {
+  //     text: "asaseraslfjdaser",
+  //     createdBy: "not me",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 9
+  //   }, {
+  //     message: {
+  //     text: "asaseraslfjdaser",
+  //     createdBy: "sean",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 9
+  //   }, {
+  //     message: {
+  //     text: "asaseraslfjdaser",
+  //     createdBy: "sean",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 9
+  //   }, {
+  //     message: {
+  //     text: "asaseraslfjdaser",
+  //     createdBy: "sean",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 9
+  //   }, {
+  //     message: {
+  //     text: "asaseraslfjdaser",
+  //     createdBy: "not me",
+  //     createdAt: Date.now(),
+  //   },
+  //   key: 9}], // message query
+  //   me: "sean"
+  // };
 
-  const messages = ChatfeedProps.messages,
-        me = ChatfeedProps.me
+ 
 
   if (messages) {
     return (
