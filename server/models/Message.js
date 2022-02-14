@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const messageSchema = new Schema({
-  username: {
+  createdBy: {
     type: String,
     required: true,
   },
-  timeStamp: {
+  createdAt: {
     type: Date,
     default: Date.now,
     required: true,

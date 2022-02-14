@@ -7,6 +7,7 @@ type User {
     lastName: String!
     username: String!
     email: String!
+    chats: [Chat]
  
 }
 

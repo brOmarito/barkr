@@ -97,13 +97,35 @@ const resolvers = {
 
     createChatRoom: async (parent, args, context) => {
 
-    }
+    },
 
-  
+    addMessage: async (obj, args, context) => {
+      const message = await Message.create({
+        text: args.text,
+        userId: args.userId,
+        chatId: args.chatId,
+      })
+        
+      
+      
+      .then(message => {
+          return message.dataValues;
+        })
+        .then(message => {
+          pubsub.publish('messageAdded', { messageAdded: message });
+        })
+        .catch(e => {
+          console.error(e);
+        });
+    },
 
 
 
 
+  },
+
+  Subscription: {
+    
   }
 };
 
