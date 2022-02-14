@@ -1,8 +1,9 @@
-const { Profile } = require('../models');
-const { User, userSchema } = require('../models');
+const { User, Message, Profile, Chat } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { profileSchema } = require('../models')
+const { withFilter } = require('graphql-subscriptions');
+const { PubSub } = require('graphql-subscriptions');
+const pubsub = new PubSub();
 
 const resolvers = {
   Query: {
