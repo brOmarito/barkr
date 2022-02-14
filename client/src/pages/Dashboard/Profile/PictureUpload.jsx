@@ -11,13 +11,22 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react'
 
-
-
-
 const PictureUpload = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
+  function uploadFile() {
+    console.log('within pic upload')
+    myWidget.open()
+  }
 
+  let myWidget = window.cloudinary.createUploadWidget({
+    cloudName: 'dkmlyifpy', 
+    uploadPreset: 'mejphwzm'}, (error, result) => { 
+      if (!error && result && result.event === "success") { 
+        console.log('Done! Here is the image info: ', result.info); 
+      }
+    }
+  )
 
   return (
     <>
@@ -29,14 +38,14 @@ const PictureUpload = () => {
         _focus={{
           border: 'none',
         }}
-        onClick={onOpen}
+        onClick={uploadFile}
       >
         Edit Profile Picture
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      {/* <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Picutre Upload</ModalHeader>
+          <ModalHeader>Picture Upload</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Input
@@ -51,7 +60,7 @@ const PictureUpload = () => {
             </Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
+      </Modal> */}
     </>
   )
 }
