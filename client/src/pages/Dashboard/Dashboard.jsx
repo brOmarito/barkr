@@ -24,14 +24,15 @@ const Dashboard = () => {
   }
 
   const {loading, data} = useQuery(QUERY_SINGLE_PROFILE, {
-    variables: { userId: Auth.getProfile().data._id}
+    variables: { userId: Auth.getProfile().data._id }
   });
 
   useEffect(() => {
-    if (loading) return null
+    if (loading === false && data) {
     let profile = data.profile;
     setCurrentProfile(profile)
-  })
+    }
+  },[loading, data])
 
   return (
     <Container display='flex' flexDirection='column' minW='100vw' minH='100vh' p={0}>
