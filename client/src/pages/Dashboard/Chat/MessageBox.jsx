@@ -1,5 +1,4 @@
 import { Flex, Tag, Text } from '@chakra-ui/react'
-import moment from "moment";
 
 const MessageBox = (props) => {
 
@@ -40,7 +39,7 @@ const MessageBox = (props) => {
           justifyContent="flex-end"
         >
        <Text fontSize={12} color="gray.500">
-          {moment(message?.createdAt).format("hh:mm A")}
+          {message?.createdAt}
        </Text>
         </Flex>
       </Flex>

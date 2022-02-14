@@ -1,21 +1,20 @@
 import { Box, Flex, Input } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import ChatFeed from "./ChatFeed";
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_CHAT } from '../../../utils/queries';
+import { ADD_MESSAGE } from '../../../utils/mutations';
 import Auth from "../../../utils/auth"
+import moment from "moment";
 
 
-const Chat = () => {
+const Chat = (props) => {
   const me = Auth.getProfile().data.username
   const { loading, data } = useQuery(QUERY_CHAT, {
     variables: {chatId: 'testroom'}
   })
+  const [addMessage, {data2, loading2, error2}] = useMutation(ADD_MESSAGE);
   const [messages, setMessages] = useState();
-
-  // const { data } = useMessagesQuery();
-  // const { data: newMessage } = useNewMessageSubscription();
-  // const [sendMessage] = useSendMessageMutation({});
 
   useEffect(() => {
     if (!loading && data) {
@@ -25,128 +24,21 @@ const Chat = () => {
 
 
 
-  // const emitMessage = async (input) => {
-  //   const createdBy = me?.me.username;
+  const sendMessage = async (input) => {
+    const createdBy = me,
+          createdAt = moment().format("hh:mm A MMM Do")
 
-  //   if (createdBy) {
-  //     await sendMessage({
-  //       variables: {
-  //         text: input,
-  //         createdBy,
-  //       },
-  //     });
-  //   }
-  // };
-
-  // const ChatfeedProps = {
-  //   messages: [{
-  //     message: {
-  //     text: "test",
-  //     createdBy: "sean",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 1
-  //   }, {
-  //     message: {
-  //     text: "More Testing",
-  //     createdBy: "Jacob",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 2
-  //   }, {
-  //     message: {
-  //     text: "TESTING 3",
-  //     createdBy: "Josh",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 3
-  //   }, {
-  //     message: {
-  //     text: "asetahes;lthaesltkh;aes",
-  //     createdBy: "Omar",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 4
-  //   }, {
-  //     message: {
-  //     text: "Hello",
-  //     createdBy: "sean",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 5
-  //   }, {
-  //     message: {
-  //     text: "these are words here yes",
-  //     createdBy: "anotherperson",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 6
-  //   }, {
-  //     message: {
-  //     text: "ajsketgasletaest",
-  //     createdBy: "HUMAN",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 7
-  //   }, {
-  //     message: {
-  //     text: "as;kthalsehtl;aeskh;tlykhas;lkyhals;khy",
-  //     createdBy: "ROBOT",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 8
-  //   }, {
-  //     message: {
-  //     text: "Hello again",
-  //     createdBy: "sean",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 9
-  //   }, {
-  //     message: {
-  //     text: "asaseraslfjdaser",
-  //     createdBy: "sean",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 9
-  //   }, {
-  //     message: {
-  //     text: "asaseraslfjdaser",
-  //     createdBy: "not me",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 9
-  //   }, {
-  //     message: {
-  //     text: "asaseraslfjdaser",
-  //     createdBy: "sean",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 9
-  //   }, {
-  //     message: {
-  //     text: "asaseraslfjdaser",
-  //     createdBy: "sean",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 9
-  //   }, {
-  //     message: {
-  //     text: "asaseraslfjdaser",
-  //     createdBy: "sean",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 9
-  //   }, {
-  //     message: {
-  //     text: "asaseraslfjdaser",
-  //     createdBy: "not me",
-  //     createdAt: Date.now(),
-  //   },
-  //   key: 9}], // message query
-  //   me: "sean"
-  // };
-
+    if (createdBy) {
+      await addMessage({
+        variables: {
+          text: input,
+          createdBy,
+          createdAt,
+          chatId: 'testroom'
+        },
+      });
+    }
+  };
  
 
   if (messages) {
@@ -181,17 +73,17 @@ const Chat = () => {
               _focus={{
                 outline: "none",
               }}
-              // onKeyPress={(event) => {
-              //   const value = event.currentTarget.value;
-              //   if (
-              //     event.key === "Enter" &&
-              //     value.trim().length > 0 
+              onKeyPress={(event) => {
+                const value = event.currentTarget.value;
+                if (
+                  event.key === "Enter" &&
+                  value.trim().length > 0 
       
-              //   ) {
-              //     emitMessage(event.currentTarget.value);
-              //     event.currentTarget.value = "";
-              //   }
-              // }}
+                ) {
+                  sendMessage(event.currentTarget.value);
+                  event.currentTarget.value = "";
+                }
+              }}
             />
           </Flex>
         </Box>
