@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  InputRightElement,
   InputGroup,
   HStack,
   VStack,
@@ -19,6 +20,7 @@ import {
   Select
 
 } from '@chakra-ui/react'
+import PictureUpload from './PictureUpload'
 
 import Auth from '../../../utils/auth'
 
@@ -86,11 +88,11 @@ const EditProfileForm = ({ initialValues }) => {
   return (
     <Flex flex='4' justifyContent='center'>
       <Box
-        
+
         bg={useColorModeValue('white', 'gray.700')}
         p={8}>
-           <Heading align='center' >Profile</Heading>
-      <Text align='center'>Tell the world about yourself!</Text>
+        <Heading align='center' >Profile</Heading>
+        <Text align='center'>Tell the world about yourself!</Text>
         <Stack spacing={4} mt={2} minW='100%'>
           <form onSubmit={formik.handleSubmit}>
             <HStack display='flex'>
@@ -182,7 +184,7 @@ const EditProfileForm = ({ initialValues }) => {
 
               <Box boxSize='sm' display='flex' flex='1' flexDirection="column" alignItems="center" justifyContent="center">
                 <Image src='https://res.cloudinary.com/dkmlyifpy/image/upload/v1644773751/photo-1644187689076-37b6126afada_vwajd2.jpg' objectFit="scale-down" alt='Dan Abramov' />
-                <Link>Edit Profile Picture</Link>
+                <PictureUpload/>
               </Box>
             </HStack>
             <FormControl>
