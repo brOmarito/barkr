@@ -6,23 +6,20 @@ import {
     Text,
     Stack,
     Button,
-    Badge,
+    Checkbox,
     useColorModeValue,
   } from '@chakra-ui/react';
-  // TODO: Remove if not used
-  // import { useQuery } from '@apollo/client';
-  // import { QUERY_SINGLE_PROFILE } from '../../../utils/queries';
 
   export default function ProfileCard(props) {
-    const {image, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state, clickHandler } = props
-    // const [queryProfile, { error }] = useQuery(QUERY_SINGLE_PROFILE);
+    const { profile, clickHandler } = props
+    const { bio, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state, image } = profile
 
     return (
       <Center py={6}>
         <Box
           as='a'
           href='#'
-          onClick={() => clickHandler('userProfile')}
+          onClick={() => clickHandler('userProfile', profile)}
           maxW={'320px'}
           w={'full'}
           bg={useColorModeValue('white', 'gray.900')}
@@ -32,9 +29,7 @@ import {
           textAlign={'center'}>
           <Avatar
             size={'xl'}
-            src={
-              'https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ'
-            }
+            src={image}
             alt={'Avatar Alt'}
             mb={4}
             pos={'relative'}
@@ -57,36 +52,14 @@ import {
             {dogBreed}
           </Text>
           <Text
+            noOfLines={3}
             textAlign={'center'}
             color={useColorModeValue('gray.700', 'gray.400')}
             px={3}>
             {dogDescription}
           </Text>
-
-          <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
-            <Badge
-              px={2}
-              py={1}
-              bg={useColorModeValue('gray.50', 'gray.800')}
-              fontWeight={'400'}>
-              #art
-            </Badge>
-            <Badge
-              px={2}
-              py={1}
-              bg={useColorModeValue('gray.50', 'gray.800')}
-              fontWeight={'400'}>
-              #photography
-            </Badge>
-            <Badge
-              px={2}
-              py={1}
-              bg={useColorModeValue('gray.50', 'gray.800')}
-              fontWeight={'400'}>
-              #music
-            </Badge>
-          </Stack>
-
+          {lookingForLove ? <Checkbox isChecked={lookingForLove} isReadOnly={true}>Looking For Love</Checkbox> : <></>}
+          {lookingForFriends ? <Checkbox isChecked={lookingForFriends} isReadOnly={true}>Looking For Friends</Checkbox> : <></>}
           <Stack mt={8} direction={'row'} spacing={4}>
             <Button
               flex={1}
