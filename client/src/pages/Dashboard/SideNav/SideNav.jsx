@@ -56,8 +56,6 @@ const NavItem = ({ icon, to, children, ...rest }) => {
 };
 
 const SideNav = (props) => {
-
-  
   const { city, dogName, state, dogDescription, image} = props.userInfo
 
   return (
@@ -68,9 +66,8 @@ const SideNav = (props) => {
             <Image maxW="150px" src='https://bit.ly/dan-abramov' objectFit="contain" borderRadius="full" alt='Dan Abramov'/>
           </Box>
           <Heading size='md' align="center" maxW="60%">Hello, {dogName}! </Heading>
-          <Text align="center" fontSize='xl' maxW="60%">{dogDescription} </Text>
+          <Text noOfLines={3} align="center" fontSize='xl' maxW="60%">{dogDescription} </Text>
           <Text align="center" maxW="60%" color='#808080'> {city}, {state}</Text>
-          
         </VStack>
         <VStack minW="100%" alignItems="end" overflow="hidden">
           {LinkItems.map((link) => (

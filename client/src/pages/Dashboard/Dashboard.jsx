@@ -1,4 +1,4 @@
-import { Container, Box } from '@chakra-ui/react'
+import { Container } from '@chakra-ui/react'
 import NavBar from '../../components/Navbar/NavBar';
 import SideNav from './SideNav/SideNav';
 import ChatList from './Chat/ChatList';
@@ -15,12 +15,13 @@ import { QUERY_SINGLE_PROFILE } from '../../utils/queries';
 
 const Dashboard = () => {
   const [activePage, setActivePage] = useState("explore")
-  
-  function changePage(page) {
-    setActivePage(page)
-  }
+  const [currentProfile, setCurrentProfile] = useState({});
+  const [viewProfile, setViewProfile] = useState({});
 
-  const [currentProfile, setCurrentProfile]=useState({})
+  function changePage(page, profile) {
+    setActivePage(page);
+    setViewProfile(profile);
+  }
 
   const {loading, data} = useQuery(QUERY_SINGLE_PROFILE, {
     variables: { userId: Auth.getProfile().data._id}
@@ -31,18 +32,18 @@ const Dashboard = () => {
     let profile = data.profile;
     setCurrentProfile(profile)
   })
-  
+
   return (
     <Container display='flex' flexDirection='column' minW='100vw' minH='100vh' p={0}>
       <NavBar />
       <Container display='flex' flex='1' minW='100%' px="2rem">
         <SideNav clickHandler={changePage} userInfo={currentProfile} />
         {activePage === "profile" && <EditProfileForm initialValues={currentProfile} />}
-        {activePage === "explore" && <ExploreContainer clickHandler={changePage} />}
+        {activePage === "explore" && <ExploreContainer currentProfile={currentProfile} clickHandler={changePage} />}
         {activePage === "events" && <EventsContainer />}
         {activePage === "chat" && <ChatContainer />}
         {activePage === "chat" && <ChatList />}
-        {activePage === "userProfile" && <UserProfile />}
+        {activePage === "userProfile" && <UserProfile profile={viewProfile} />}
       </Container>
       <SmallWithSocial/>
     </Container>
