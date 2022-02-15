@@ -77,6 +77,7 @@ const EditProfileForm = ({ initialValues }) => {
     <Flex flex='4' maxW='100%' justifyContent='center' >
       <Box
         bg={useColorModeValue('white', 'gray.700')}
+        maxW='100%'
         p={{base: 2, md: 8}}>
         <Heading align='center' >Profile</Heading>
         <Text align='center'>Tell the world about yourself!</Text>
