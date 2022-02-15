@@ -12,8 +12,6 @@ import { NavItem } from './NavItem';
 const SideNav = (props) => {
   const { city, dogName, state, dogDescription, image} = props.userInfo
 
-  console.log(props.userInfo)
-
   return (
     <Flex flex='1' justifyContent='center' pt={4} borderRight="1px" borderRightColor="#EDF2F7" display={{ base: 'none', md: 'block' }}>
       <VStack>
