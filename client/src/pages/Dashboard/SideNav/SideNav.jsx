@@ -1,59 +1,13 @@
 import {
-  Icon,
   Flex,
   Box,
   VStack,
   Image,
   Text,
   Heading
-
 } from '@chakra-ui/react'
-import {
-  FiHome,
-  FiCompass,
-  FiCalendar,
-  FiMail
-
-} from 'react-icons/fi';
-import { Link } from 'react-router-dom';
-
-const LinkItems = [
-  { name: 'Profile', icon: FiHome, to: "profile" },
-  { name: 'Explore', icon: FiCompass, to: "explore" },
-  { name: 'Messages', icon: FiMail, to: "chat" },
-  { name: 'Events', icon: FiCalendar, to: "events" },
-];
-
-const NavItem = ({ icon, to, children, ...rest }) => {
-  return (
-    <Link width="100%" href='#' style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
-      <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: 'cyan.400',
-          color: 'white',
-        }}
-        {...rest}>
-          {children}
-        {icon && (
-          <Icon
-            ml="4"
-            fontSize="16"
-            _groupHover={{
-              color: 'white',
-            }}
-            as={icon}
-          />
-        )}
-      </Flex>
-   </Link>
-  );
-};
+import { LinkItems } from '../../../utils/navLinks';
+import { NavItem } from './NavItem';
 
 const SideNav = (props) => {
   const { city, dogName, state, dogDescription, image} = props.userInfo
@@ -61,7 +15,7 @@ const SideNav = (props) => {
   console.log(props.userInfo)
 
   return (
-    <Flex flex='1' justifyContent='center' pt={4} borderRight="1px" borderRightColor="#EDF2F7">
+    <Flex flex='1' justifyContent='center' pt={4} borderRight="1px" borderRightColor="#EDF2F7" display={{ base: 'none', md: 'block' }}>
       <VStack>
         <VStack minW="100%" mb={3}>
           <Box display='flex' mb={3} flex='1' flexDirection="column" alignContent="center" justifyContent="center">

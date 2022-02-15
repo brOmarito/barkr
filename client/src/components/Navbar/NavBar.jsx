@@ -1,11 +1,9 @@
 import React from 'react'
-import Logo from './Logo'
 import {
   Box,
   Flex,
   Avatar,
   HStack,
-  Link,
   IconButton,
   Button,
   Menu,
@@ -19,24 +17,10 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import Auth from '../../utils/auth';
+import { LinkItems } from '../../utils/navLinks';
+import { NavItem } from '../../pages/Dashboard/SideNav/NavItem';
 
-const Links = ['Dashboard', 'Explore', 'Profile'];
-
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}>
-    {children}
-  </Link>
-);
-
-const NavBar = () => {
+const NavBar = (props) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -72,8 +56,8 @@ const NavBar = () => {
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+              {LinkItems.map((link) => (
+                <NavItem key={link.name} icon={link.icon} to={link.to} onClick={()=>props.clickHandler(link.to)}>{link.name}</NavItem>
               ))}
             </Stack>
           </Box>
