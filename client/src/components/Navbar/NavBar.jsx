@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  Heading,
   Box,
   Flex,
   Avatar,
@@ -37,14 +38,19 @@ const NavBar = (props) => {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Box>barkr</Box>
+            <Box>
+              <Heading color='grey.800' ml={{base: '2rem', md: 'none'}} >
+              barkr
+              </Heading>
+            
+              </Box>
           </HStack>
           <Flex alignItems={'center'}>
             <Menu>
               <Button  
               colorScheme='blue'
-              mr={2}
               onClick={() => Auth.logout()}
+              size='sm'
               >
                 Logout
 
