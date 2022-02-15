@@ -24,7 +24,8 @@ export const QUERY_SINGLE_PROFILE = gql`
         state
         image
         lookingForLove
-        lookingForFriends 
+        lookingForFriends
+        image
     }
   }
 `
