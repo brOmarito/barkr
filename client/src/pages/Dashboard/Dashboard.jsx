@@ -38,7 +38,7 @@ const Dashboard = () => {
   return (
     <ChatRoomProvider>
     <Container display='flex' flexDirection='column' minW='100vw' minH='100vh' p={0}>
-      <NavBar />
+      <NavBar clickHandler={changePage} />
       <Container display='flex' flex='1' minW='100%' px="2rem">
         <SideNav clickHandler={changePage} userInfo={currentProfile} />
         {activePage === "profile" && <EditProfileForm initialValues={currentProfile} />}

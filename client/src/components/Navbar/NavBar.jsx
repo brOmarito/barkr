@@ -19,8 +19,8 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import Auth from '../../utils/auth';
-
-const Links = ['Dashboard', 'Explore', 'Profile'];
+import { LinkItems } from '../../utils/navLinks';
+import { NavItem } from '../../pages/Dashboard/SideNav/NavItem';
 
 const NavLink = ({ children }) => (
   <Link
@@ -36,7 +36,7 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-const NavBar = () => {
+const NavBar = (props) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -54,14 +54,6 @@ const NavBar = () => {
           />
           <HStack spacing={8} alignItems={'center'}>
             <Box>barkr</Box>
-            {/* <HStack
-              as={'nav'}
-              spacing={4}
-              display={{ base: 'none', md: 'flex' }}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </HStack> */}
           </HStack>
           <Flex alignItems={'center'}>
             <Menu>
@@ -90,8 +82,8 @@ const NavBar = () => {
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+              {LinkItems.map((link) => (
+                <NavItem key={link.name} icon={link.icon} to={link.to} onClick={()=>props.clickHandler(link.to)}>{link.name}</NavItem>
               ))}
             </Stack>
           </Box>
