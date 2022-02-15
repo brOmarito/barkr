@@ -52,7 +52,7 @@ export default function SmallWithSocial() {
         spacing={4}
         justify={{ base: 'center',}}
         align={{ base: 'center', md: 'center' }}>
-        <Text>© 2020 Barkr. All rights reserved</Text>
+        <Text>© 2022 Barkr. All rights reserved</Text>
         <Stack direction={'row'} spacing={6}>
           <SocialButton href={'https://github.com/brOmarito/barkr'} label={'Twitter'}>
             <FaGithub />
