@@ -30,7 +30,7 @@ const ExploreContainer =  ({ clickHandler, currentProfile }) => {
       <Text>Time to make some dog friends</Text>
       <Flex flex='3' justifyContent='space-evenly' flexWrap="wrap">
         {profiles.map((profile) => (
-          <ProfileCard clickHandler={clickHandler} profile={profile} />
+          <ProfileCard clickHandler={clickHandler} profile={profile} key={profile.userId} />
         ))}
       </Flex>
     </Flex>

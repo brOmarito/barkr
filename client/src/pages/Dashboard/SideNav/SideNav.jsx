@@ -24,7 +24,7 @@ const LinkItems = [
   { name: 'Events', icon: FiCalendar, to: "events" },
 ];
 
-const NavItem = ({ icon, to, children, ...rest }) => {
+const NavItem = ({ icon, children, ...rest }) => {
   return (
     <Link width="100%" href='#' style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
@@ -58,7 +58,6 @@ const NavItem = ({ icon, to, children, ...rest }) => {
 const SideNav = (props) => {
   const { city, dogName, state, dogDescription, image} = props.userInfo
 
-  console.log(props.userInfo)
 
   return (
     <Flex flex='1' justifyContent='center' pt={4} borderRight="1px" borderRightColor="#EDF2F7">
