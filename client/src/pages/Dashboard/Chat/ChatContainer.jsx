@@ -6,7 +6,7 @@ import ChatList from "./ChatList";
 const ChatContainer = () => {
   return (
     <Flex
-      flex={3}
+      flex={4}
       direction="column"
       alignItems="center"
       justifyContent="flex-start"

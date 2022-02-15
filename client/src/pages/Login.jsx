@@ -30,15 +30,13 @@ export default function SimpleCard() {
     onSubmit: async (values) => {
 
       try {
-        console.log(values)
-        console.log('logged in')
         const { data } = await login({
           variables: { ...values },
         })
 
         Auth.login(data.login.token)
       } catch (err) {
-        console.log(err)
+        alert(err)
       }
     }
   })
@@ -91,7 +89,7 @@ export default function SimpleCard() {
                   direction={{ base: 'column', sm: 'row' }}
                   align={'start'}
                   justify={'space-between'}>
-                  <Checkbox>Don't Have an Account?</Checkbox>
+                  <Text>Don't Have an Account?</Text>
                   <Link href='/signup' color={'blue.400'}>Sign Up!</Link>
                 </Stack>
                 <Button

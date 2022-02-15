@@ -86,6 +86,7 @@ import {
           </Text>
           <Text
             noOfLines={3}
+            minH={'75px'}
             textAlign={'center'}
             color={useColorModeValue('gray.700', 'gray.400')}
             px={3}>

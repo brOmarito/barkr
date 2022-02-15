@@ -19,13 +19,14 @@ const ExploreContainer =  ({ clickHandler }) => {
     if (loading === false && data) {
     let profiles = data.profiles;
     let  filtered = profiles.filter(profile => profile.userId !== Auth.getProfile().data._id);
+    console.log(Auth.getProfile().data._id)
     console.log(filtered)
     setProfiles(filtered)
     }
   },[loading, data])
 
   return (
-    <Flex flex='4' flexDirection='column' alignItems='center' mt={2}>
+    <Flex flex='4' flexDirection='column' alignItems='center'>
       <Heading>Explore</Heading>
       <Text>Time to make some dog friends</Text>
       <Flex flex='3' justifyContent='space-evenly' flexWrap="wrap">
