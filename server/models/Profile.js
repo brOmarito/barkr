@@ -41,7 +41,7 @@ const profileSchema = new Schema({
     },
     image: {
         type: String,
-         default: "https://res.cloudinary.com/pariveda-solutions/image/upload/v1644796816/iu_fccg2n.jpg",
+        default: "https://res.cloudinary.com/pariveda-solutions/image/upload/v1644796816/iu_fccg2n.jpg",
 },
 
 });

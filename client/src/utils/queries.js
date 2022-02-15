@@ -22,6 +22,7 @@ export const QUERY_SINGLE_PROFILE = gql`
         dogDescription
         city
         state
+        image
         lookingForLove
         lookingForFriends
         image
