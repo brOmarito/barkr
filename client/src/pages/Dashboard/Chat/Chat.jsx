@@ -14,7 +14,8 @@ const Chat = (props) => {
   const { chatRoom, changeRoom, getRoom, defaultroom } = useChatRoomContext()
   getRoom()
   const { loading, data } = useQuery(QUERY_CHAT, {
-    variables: {chatId: chatRoom}
+    variables: {chatId: chatRoom},
+    pollInterval: 500
   })
   const [addMessage, {data2, loading2, error2}] = useMutation(ADD_MESSAGE);
   const [messages, setMessages] = useState();
