@@ -3,7 +3,6 @@ import { Flex, Tag, Text } from '@chakra-ui/react'
 const MessageBox = (props) => {
 
   const {message, isMine} = props
-  console.log(message)
   
   return (
     <Flex my={2} p={2}>

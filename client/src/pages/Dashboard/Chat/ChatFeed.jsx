@@ -10,8 +10,6 @@ const ChatFeed = ({
   messages,
   me
 }) => {
-  console.log(messages)
-  console.log(me)
   return (
     <ScrollableFeed className={hide.hideScroll}>
       <Box p={6}>
