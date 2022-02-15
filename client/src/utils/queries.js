@@ -23,7 +23,8 @@ export const QUERY_SINGLE_PROFILE = gql`
         city
         state
         lookingForLove
-        lookingForFriends 
+        lookingForFriends
+        image
     }
   }
 `
