@@ -83,8 +83,8 @@ const EditProfileForm = ({ initialValues }) => {
         <Text align='center'>Tell the world about yourself!</Text>
         <Stack spacing={4} mt={2} minW='100%'>
           <form onSubmit={formik.handleSubmit}>
-            <HStack display='flex'>
-              <VStack flex='1' alignItems="start" >
+            <HStack display='flex' flexWrap='wrap' justifyContent='center'>
+              <VStack flex='1' alignItems="start"  order={{ base: '1', md: '0' }}>
                 <Box width="100%">
                   <FormControl>
                     <FormLabel>Name</FormLabel>
@@ -170,7 +170,7 @@ const EditProfileForm = ({ initialValues }) => {
                 </Box>
               </VStack>
 
-              <Box boxSize='sm' display='flex' flex='1' flexDirection="column" alignItems="center" justifyContent="center">
+              <Box boxSize='sm' display='flex' flexDirection="column" alignItems="center" justifyContent="center" order={{ base: '0', md: '1' }}>
                 <Image src={image} objectFit="scale-down" alt='Dan Abramov' />
                 <PictureUpload formik={formik} />
               </Box>
