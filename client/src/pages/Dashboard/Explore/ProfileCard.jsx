@@ -9,10 +9,43 @@ import {
     Checkbox,
     useColorModeValue,
   } from '@chakra-ui/react';
+  import { useMutation, useQuery } from '@apollo/client';
+  import { CREATE_CHAT } from '../../../utils/mutations';
+  import { QUERY_CHAT_EXISTS } from '../../../utils/queries';
+  import { roomNameGen } from '../../../utils/roomNameGen'
+  import  Auth  from '../../../utils/auth'
+  import moment from 'moment'
+  import { useChatRoomContext } from '../../../utils/GlobalState';
+  
 
   export default function ProfileCard(props) {
+    const userId1 = Auth.getProfile().data._id
+    const { chatRoom, changeRoom, defaultroom } = useChatRoomContext()
     const { profile, clickHandler } = props
-    const { bio, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state, image } = profile
+    const { bio, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state, image, userId: userId2 } = profile
+    const [createChat, {data2, loading2, error2}] = useMutation(CREATE_CHAT);
+    const roomName = roomNameGen(userId1, userId2)
+    const { loading3, data3 } = useQuery(QUERY_CHAT_EXISTS, {
+      variables: {chatId: roomName}
+    })
+
+    const handleMessageClick = async (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      console.log(data3)
+      if (data3 === undefined){
+      const create = await createChat({variables: {
+        roomName: roomName,
+        messages: [{
+          text: "Welcome to your chat room!",
+          createdBy: "Barkr",
+          createdAt: `${moment().format("hh:mm A MMM Do")}`,
+          chatId: roomName
+        }],
+        userId: [userId1, userId2],
+      }})}
+      changeRoom(roomName)
+    }
 
     return (
       <Center py={6}>
@@ -62,6 +95,7 @@ import {
           {lookingForFriends ? <Checkbox isChecked={lookingForFriends} isReadOnly={true}>Looking For Friends</Checkbox> : <></>}
           <Stack mt={8} direction={'row'} spacing={4}>
             <Button
+              onClick={handleMessageClick}
               flex={1}
               fontSize={'sm'}
               bg={'blue.400'}

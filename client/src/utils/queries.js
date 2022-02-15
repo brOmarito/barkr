@@ -55,3 +55,25 @@ export const QUERY_PROFILES = gql`
 //     email
 //   }
 // }
+
+export const QUERY_CHAT = gql`
+  query getChat($chatId: String!) {
+    getChat(chatId: $chatId){
+			roomName
+      users
+      messages {
+        text
+        createdBy
+        createdAt
+      }
+    }
+  }
+`
+
+export const QUERY_CHAT_EXISTS = gql`
+  query chatExists($chatId: String!) {
+    getChat(chatId: $chatId){
+			roomName
+    }
+  }
+`
