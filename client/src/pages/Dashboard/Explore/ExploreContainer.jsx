@@ -26,7 +26,7 @@ const ExploreContainer =  ({ clickHandler }) => {
   },[loading, data])
 
   return (
-    <Flex flex='4' flexDirection='column' alignItems='center' mt={2}>
+    <Flex flex='4' flexDirection='column' alignItems='center'>
       <Heading>Explore</Heading>
       <Text>Time to make some dog friends</Text>
       <Flex flex='3' justifyContent='space-evenly' flexWrap="wrap">

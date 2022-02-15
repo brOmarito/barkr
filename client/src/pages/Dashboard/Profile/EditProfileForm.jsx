@@ -74,17 +74,16 @@ const EditProfileForm = ({ initialValues }) => {
   })
 
   return (
-    <Flex flex='4' justifyContent='center'>
+    <Flex flex='4' maxW='100%' justifyContent='center' >
       <Box
-
         bg={useColorModeValue('white', 'gray.700')}
-        p={8}>
+        p={{base: 2, md: 8}}>
         <Heading align='center' >Profile</Heading>
         <Text align='center'>Tell the world about yourself!</Text>
         <Stack spacing={4} mt={2} minW='100%'>
           <form onSubmit={formik.handleSubmit}>
             <HStack display='flex' flexWrap='wrap' justifyContent='center'>
-              <VStack flex='1' alignItems="start"  order={{ base: '1', md: '0' }}>
+              <VStack flex='1' alignItems="start" p={'1rem'}  order={{ base: '1', md: '0' }}>
                 <Box width="100%">
                   <FormControl>
                     <FormLabel>Name</FormLabel>
@@ -171,46 +170,48 @@ const EditProfileForm = ({ initialValues }) => {
               </VStack>
 
               <Box boxSize='sm' display='flex' flexDirection="column" alignItems="center" justifyContent="center" order={{ base: '0', md: '1' }}>
-                <Image src={image} objectFit="scale-down" alt='Dan Abramov' />
+                <Image src={image} objectFit="scale-down" maxW={'90%'} alt='Your profile picture' />
                 <PictureUpload formik={formik} />
               </Box>
             </HStack>
-            <FormControl>
-              <FormLabel>About the Owner</FormLabel>
-              <Textarea
-                id="bio"
-                name='bio'
-                type="text"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.bio}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel>About the Dog</FormLabel>
-              <Textarea
-                type="text"
-                id="dogDescription"
-                name='dogDescription'
-                size='sm'
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.dogDescription}
-              />
-            </FormControl>
-            <Stack spacing={10} pt={2}>
-              <Button
-                loadingText="Submitting"
-                type="submit"
-                size="lg"
-                bg={'blue.400'}
-                color={'white'}
-                _hover={{
-                  bg: 'blue.500',
-                }}>
-                Update Profile
-              </Button>
-            </Stack>
+            <VStack p={'1rem'}>
+              <FormControl>
+                <FormLabel>About the Owner</FormLabel>
+                <Textarea
+                  id="bio"
+                  name='bio'
+                  type="text"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.bio}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>About the Dog</FormLabel>
+                <Textarea
+                  type="text"
+                  id="dogDescription"
+                  name='dogDescription'
+                  size='sm'
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.dogDescription}
+                />
+              </FormControl>
+              <Stack spacing={10} pt={2}>
+                <Button
+                  loadingText="Submitting"
+                  type="submit"
+                  size="lg"
+                  bg={'blue.400'}
+                  color={'white'}
+                  _hover={{
+                    bg: 'blue.500',
+                  }}>
+                  Update Profile
+                </Button>
+              </Stack>
+            </VStack>
           </form>
         </Stack>
       </Box>
