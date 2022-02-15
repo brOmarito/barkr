@@ -19,8 +19,6 @@ const ExploreContainer =  ({ clickHandler }) => {
     if (loading === false && data) {
     let profiles = data.profiles;
     let  filtered = profiles.filter(profile => profile.userId !== Auth.getProfile().data._id);
-    console.log(Auth.getProfile().data._id)
-    console.log(filtered)
     setProfiles(filtered)
     }
   },[loading, data])
