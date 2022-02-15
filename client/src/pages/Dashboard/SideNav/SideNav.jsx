@@ -1,5 +1,4 @@
 import {
-  Icon,
   Flex,
   Box,
   VStack,

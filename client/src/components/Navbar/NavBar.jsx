@@ -1,11 +1,9 @@
 import React from 'react'
-import Logo from './Logo'
 import {
   Box,
   Flex,
   Avatar,
   HStack,
-  Link,
   IconButton,
   Button,
   Menu,
@@ -21,20 +19,6 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import Auth from '../../utils/auth';
 import { LinkItems } from '../../utils/navLinks';
 import { NavItem } from '../../pages/Dashboard/SideNav/NavItem';
-
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}>
-    {children}
-  </Link>
-);
 
 const NavBar = (props) => {
 
