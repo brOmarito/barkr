@@ -45,7 +45,6 @@ const Dashboard = () => {
         {activePage === "explore" && <ExploreContainer currentProfile={currentProfile} clickHandler={changePage} />}
         {activePage === "events" && <EventsContainer />}
         {activePage === "chat" && <ChatContainer />}
-        {activePage === "chat" && <ChatList />}
         {activePage === "userProfile" && <UserProfile profile={viewProfile} />}
       </Container>
       <SmallWithSocial/>
