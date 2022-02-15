@@ -21,7 +21,7 @@ const Chat = (props) => {
   
 
   useEffect(() => {
-    if (!loading && data) {
+    if (!loading && data.getChat != null) {
       setMessages(data.getChat.messages);
     }
   }, [loading, data]);

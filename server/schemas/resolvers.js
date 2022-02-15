@@ -28,6 +28,10 @@ const resolvers = {
     },
     getChat: async (parent, { chatId }, context) => {
       return  Chat.findOne({roomName: chatId})
+    },
+    chatExists: async (parent, { chatId }, context) => {
+      return Chat.findOne({roomName: chatId})
+
     }
   },
 

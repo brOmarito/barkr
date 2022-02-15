@@ -9,8 +9,9 @@ import {
     Checkbox,
     useColorModeValue,
   } from '@chakra-ui/react';
-  import { useMutation } from '@apollo/client';
+  import { useMutation, useQuery } from '@apollo/client';
   import { CREATE_CHAT } from '../../../utils/mutations';
+  import { QUERY_CHAT_EXISTS } from '../../../utils/queries';
   import { roomNameGen } from '../../../utils/roomNameGen'
   import  Auth  from '../../../utils/auth'
   import moment from 'moment'
@@ -23,11 +24,16 @@ import {
     const { profile, clickHandler } = props
     const { bio, dogName, dogBreed, dogDescription, lookingForLove, lookingForFriends, city, state, image, userId: userId2 } = profile
     const [createChat, {data2, loading2, error2}] = useMutation(CREATE_CHAT);
+    const roomName = roomNameGen(userId1, userId2)
+    const { loading3, data3 } = useQuery(QUERY_CHAT_EXISTS, {
+      variables: {chatId: roomName}
+    })
 
     const handleMessageClick = async (e) => {
       e.preventDefault()
       e.stopPropagation()
-      const roomName = roomNameGen(userId1, userId2)
+      console.log(data3)
+      if (data3 === undefined){
       const create = await createChat({variables: {
         roomName: roomName,
         messages: [{
@@ -37,8 +43,8 @@ import {
           chatId: roomName
         }],
         userId: [userId1, userId2],
-      }})
-      const change = await changeRoom(roomName)
+      }})}
+      changeRoom(roomName)
     }
 
     return (

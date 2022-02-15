@@ -15,7 +15,7 @@ import { QUERY_SINGLE_PROFILE } from '../../utils/queries';
 import { ChatRoomProvider } from '../../utils/GlobalState';
 
 const Dashboard = () => {
-  const [activePage, setActivePage] = useState("chat")
+  const [activePage, setActivePage] = useState("explore")
   const [currentProfile, setCurrentProfile] = useState({});
   const [viewProfile, setViewProfile] = useState({});
 

@@ -72,6 +72,7 @@ type Query {
     profiles: [ Profile ]
     chats: [Chat]
 	  getChat(chatId:String!): Chat
+    chatExists(chatId:String!): Chat
 	  messages(chatId:String): [Message]
 	  chatUsers(chatId:String): [User]
 	  user(_id:ID!): User

@@ -67,3 +67,11 @@ export const QUERY_CHAT = gql`
     }
   }
 `
+
+export const QUERY_CHAT_EXISTS = gql`
+  query chatExists($chatId: String!) {
+    getChat(chatId: $chatId){
+			roomName
+    }
+  }
+`
