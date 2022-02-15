@@ -1,8 +1,10 @@
-const { Profile } = require('../models');
-const { User, userSchema } = require('../models');
+const { User, Message, Profile, Chat } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { profileSchema } = require('../models')
+const { PubSub } = require('graphql-subscriptions');
+const pubsub = new PubSub();
+const { withFilter } = require('graphql-subscriptions');
+const CHAT_CHANGED = 'chat_changed'
 
 const resolvers = {
   Query: {
@@ -24,18 +26,13 @@ const resolvers = {
     profiles: async (parent, context) => {
       return Profile.find()
     },
-    // getChat: async (parent, { username }, context) => {
-    //   if (context.user) {
-    //   return  User.findOne({_id: context.user._id})
-    //     .populate({
-    //       path : 'Chatroom',
-    //       populate : {
-    //         path : 'Chat'
-    //       }
-    //     })
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!')
-    // }
+    getChat: async (parent, { chatId }, context) => {
+      return  Chat.findOne({roomName: chatId})
+    },
+    chatExists: async (parent, { chatId }, context) => {
+      return Chat.findOne({roomName: chatId})
+
+    }
   },
 
   Mutation: {
@@ -92,11 +89,44 @@ const resolvers = {
           runValidators: true,
         }
       );
-    }
+    },
 
+    createChat: async (parent, args, context) => {
+      const chat = await Chat.create({
+        roomName: args.roomName,
+        users: args.users,
+        messages: args.messages
+      })
+    },
 
+    addMessage: async (obj, args, context) => {
+      const message = await Message.create({
+        text: args.text,
+        createdBy: args.createdBy,
+        createdAt: args.createdAt,
+        chatId: args.chatId,
+      })
+      const chat = await Chat.findOneAndUpdate({roomName: args.chatId}, {$addToSet: {messages: message}}, {new: true})
+        .then(() => {
+          return message
+        })
+        .then(message => {
+          pubsub.publish('messageAdded', { messageAdded: message });
+        })
+        .catch(e => {
+          console.error(e);
+        });
+    },
 
+  },
 
+  Subscription: {
+    messageAdded: withFilter(
+      () => pubsub.asyncIterator('messageAdded'),
+      (payload, args) => {
+        return payload.messageAdded.chatId === args.chatId;
+      }
+    ),
   }
 };
 

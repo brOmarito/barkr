@@ -74,6 +74,29 @@ mutation updateProfile(
     }
   }
 `
+export const CREATE_CHAT = gql`
+  mutation createChat($roomName: String!, $userId: [String]!, $messageInput: [MessageInput]) {
+  createChat(roomName: $roomName, users: $userId, messages: $messageInput) {
+ 		_id
+    roomName
+    users
+    messages {
+      text
+    }
+  }
+}
+`
+
+export const ADD_MESSAGE = gql`
+mutation addMessage($text: String!, $createdBy: String!, $createdAt: String!, $chatId: String!) {
+  addMessage(text: $text, createdBy: $createdBy, createdAt: $createdAt, chatId: $chatId) {
+		text
+    createdBy
+    createdAt
+    chatId
+  }
+}
+`
   ;
 
 

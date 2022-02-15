@@ -1,15 +1,8 @@
-import { Flex, Tag, Text, Box } from '@chakra-ui/react'
-import moment from "moment";
+import { Flex, Tag, Text } from '@chakra-ui/react'
 
 const MessageBox = (props) => {
-  // const isMine = true,
-  //       message = {
-  //         text: "test",
-  //         sender: "sean",
-  //         createdAt: Date.now(),
-  //       }
-  console.log(props)
-  const {message: {message}, isMine} = props
+
+  const {message, isMine} = props
   
   return (
     <Flex my={2} p={2}>
@@ -22,7 +15,7 @@ const MessageBox = (props) => {
         ml={isMine ? "auto" : undefined}
         mr={isMine ? undefined : "auto"}
       >
-        {message?.sender}
+        {message?.createdBy}
       </Tag>
       <Flex
         bg="gray.50"
@@ -45,7 +38,7 @@ const MessageBox = (props) => {
           justifyContent="flex-end"
         >
        <Text fontSize={12} color="gray.500">
-          {moment(message?.createdAt).format("hh:mm A")}
+          {message?.createdAt}
        </Text>
         </Flex>
       </Flex>

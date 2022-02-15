@@ -10,15 +10,13 @@ const ChatFeed = ({
   messages,
   me
 }) => {
-  console.log(messages)
-  console.log(me)
   return (
     <ScrollableFeed className={hide.hideScroll}>
       <Box p={6}>
         {messages?.map((message, key) => (
           <MessageBox
             message={message}
-            isMine={me === message.message.sender}
+            isMine={me === message.createdBy}
             key={key}
           />
         ))}

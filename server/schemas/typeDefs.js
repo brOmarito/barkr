@@ -7,6 +7,7 @@ type User {
     lastName: String!
     username: String!
     email: String!
+    chats: [Chat]
  
 }
 
@@ -23,15 +24,19 @@ type Profile {
     image: String
 }
 
-type Chat {
-    username: String!
-    timeStamp: String!
-    chatText: String!
+type Message {
+    _id: ID
+    createdBy: String!
+    createdAt: String!
+    text: String!
+    chatId: String!
 }
 
-type Chatroom {
+type Chat {
+    _id: ID
     roomName: String!
-    chats: [Chat]
+    users: [String]
+    messages: [Message]
 }
 
 input ProfileInput {
@@ -47,6 +52,14 @@ input ProfileInput {
     image: String
 }
 
+input MessageInput {
+    _id: ID
+    createdBy: String!
+    createdAt: String!
+    text: String!
+    chatId: String!
+}
+
 type Auth {
     token: String
     user: User
@@ -57,19 +70,22 @@ type Query {
     users: [ User ]
     profile(userId: ID!): Profile 
     profiles: [ Profile ]
+    chats: [Chat]
+	  getChat(chatId:String!): Chat
+    chatExists(chatId:String!): Chat
+	  messages(chatId:String): [Message]
+	  chatUsers(chatId:String): [User]
+	  user(_id:ID!): User
 }
 type Mutation {
     login(email: String!, password: String!): Auth
-
     createUser(
         username: String!, 
         email: String!, firstName: 
         String!, lastName: String!, 
         password: String!
         ): Auth
-
     createProfile(userId: ID!): Profile
-
     updateProfile(
        userId: ID 
        bio: String,
@@ -82,9 +98,12 @@ type Mutation {
        state: String,
        image: String,
         ): Profile
-
-    
-  }
+    addMessage(text: String!, createdBy: String!, createdAt: String! chatId: String!): Message
+    createChat(roomName: String!, users: [String]!, messages: [MessageInput]): Chat    
+}
+type Subscription {
+  messageAdded(chatId: String!): Message
+}
 `;
 
 module.exports = typeDefs;
