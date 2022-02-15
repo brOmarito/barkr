@@ -23,27 +23,27 @@ const PORT = process.env.PORT || 3001;
 
 
 const httpLink = new HttpLink({
-  uri: `http://localhost:${PORT}/graphql`,
+  uri: `/graphql`,
 });
 
-const wsLink = new WebSocketLink({
-  uri: `ws://localhost:${PORT}/subscriptions`,
-  options: {
-    reconnect: true
-  }
-});
+// const wsLink = new WebSocketLink({
+//   uri: `${PORT}/subscriptions`,
+//   options: {
+//     reconnect: true
+//   }
+// });
 
-const splitLink = split(
-  ({ query }) => {
-    const definition = getMainDefinition(query);
-    return (
-      definition.kind === 'OperationDefinition' &&
-      definition.operation === 'subscription'
-    );
-  },
-  wsLink,
-  httpLink,
-);
+// const splitLink = split(
+//   ({ query }) => {
+//     const definition = getMainDefinition(query);
+//     return (
+//       definition.kind === 'OperationDefinition' &&
+//       definition.operation === 'subscription'
+//     );
+//   },
+//   wsLink,
+//   httpLink,
+// );
 
 
 const authLink = setContext((_, { headers }) => {
@@ -59,7 +59,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(splitLink),
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 

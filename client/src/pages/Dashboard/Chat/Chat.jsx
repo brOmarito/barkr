@@ -22,8 +22,10 @@ const Chat = (props) => {
   
 
   useEffect(() => {
-    if (!loading && data.getChat != null) {
+    if (!loading && data != null) {
+      if (data.getChat != null) {
       setMessages(data.getChat.messages);
+      }
     }
   }, [loading, data]);
 
