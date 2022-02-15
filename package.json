@@ -20,6 +20,7 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+    "cloudinary-react": "^1.7.1",
     "moment": "^2.29.1"
   }
 }

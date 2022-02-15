@@ -5,8 +5,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  InputRightElement,
-  InputGroup,
   HStack,
   VStack,
   Stack,
@@ -14,27 +12,17 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  Link,
   Textarea,
   Checkbox,
   Select
 
 } from '@chakra-ui/react'
 import PictureUpload from './PictureUpload'
-
 import Auth from '../../../utils/auth'
-
 import { useMutation } from '@apollo/client';
-import { useQuery } from '@apollo/client';
-
 import { useFormik, Formik, Form, Field } from 'formik';
-
 import { UPDATE_PROFILE } from '../../../utils/mutations'
-import { QUERY_SINGLE_PROFILE } from '../../../utils/queries';
-
 import { stateAbbreviations } from './stateAbbreviations'
-
-import { useEffect, useState } from 'react'
 
 const EditProfileForm = ({ initialValues }) => {
 
@@ -184,7 +172,7 @@ const EditProfileForm = ({ initialValues }) => {
 
               <Box boxSize='sm' display='flex' flex='1' flexDirection="column" alignItems="center" justifyContent="center">
                 <Image src={image} objectFit="scale-down" alt='Dan Abramov' />
-                <PictureUpload/>
+                <PictureUpload formik={formik} />
               </Box>
             </HStack>
             <FormControl>
