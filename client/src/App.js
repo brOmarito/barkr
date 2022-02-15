@@ -23,11 +23,11 @@ const PORT = process.env.PORT || 3001;
 
 
 const httpLink = new HttpLink({
-  uri: `http://localhost:${PORT}/graphql`,
+  uri: `${PORT}/graphql`,
 });
 
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:${PORT}/subscriptions`,
+  uri: `/subscriptions`,
   options: {
     reconnect: true
   }
