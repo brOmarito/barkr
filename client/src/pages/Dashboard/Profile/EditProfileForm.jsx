@@ -78,7 +78,7 @@ const EditProfileForm = ({ initialValues }) => {
       <Box
         bg={useColorModeValue('white', 'gray.700')}
         maxW='100%'
-        p={{base: 2, md: 8}}>
+        >
         <Heading align='center' >Profile</Heading>
         <Text align='center'>Tell the world about yourself!</Text>
         <Stack spacing={4} mt={2} minW='100%'>
